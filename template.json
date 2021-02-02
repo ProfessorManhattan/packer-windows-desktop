@@ -1,0 +1,74 @@
+{
+    "builders": [
+      {
+        "type": "virtualbox-iso",
+        "communicator": "winrm",
+        "disk_size": "{{user `disk_size`}}",
+        "floppy_files": [
+          "Autounattend.xml",
+          "scripts/first-boot.ps1",
+          "scripts/winrm.ps1"
+        ],
+        "guest_os_type": "Windows10_64",
+        "headless": "{{user `headless`}}",
+        "iso_url": "{{user `iso_url`}}",
+        "iso_checksum": "{{user `iso_checksum`}}",
+        "winrm_username": "vagrant",
+        "winrm_password": "vagrant",
+        "winrm_timeout": "3h",
+        "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+        "post_shutdown_delay": "30s",
+        "guest_additions_mode": "attach",
+        "vboxmanage": [
+          [
+            "modifyvm",
+            "{{.Name}}",
+            "--memory",
+            "{{user `memory`}}"
+          ],
+          [
+            "modifyvm",
+            "{{.Name}}",
+            "--cpus",
+            "{{user `cpus`}}"
+          ],
+          [
+            "modifyvm",
+            "{{.Name}}",
+            "--vram",
+            "{{user `vram`}}"
+          ]
+        ]
+      }
+    ],
+    "post-processors": [
+        {
+          "type": "vagrant",
+          "output": "{{ user `build_directory` }}/{{user `box_basename`}}.{{.Provider}}_windows10.box",
+          "vagrantfile_template": "windows10/vagrantfile.template"
+        }
+      ],
+    "provisioners": [
+      {
+        "type": "powershell",
+        "scripts": ["scripts/provision.ps1"],
+        "environment_vars": ["devtools={{user `devtools`}}"]
+      },
+      {
+        "type": "windows-restart",
+        "restart_timeout": "10m"
+      }
+    ],
+    "variables": {
+        "box_basename": "Windows10-64x",
+        "build_directory": "output",
+        "iso_url": "iso/19042.631.201119-0144.20h2_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
+        "iso_checksum": "d41d8cd98f00b204e9800998ecf8427e",
+        "headless": "false",
+        "devtools": "false",
+        "cpus": "2",
+        "memory": "4096", 
+        "vram": "32",
+        "disk_size": "80000"
+      }
+  }
