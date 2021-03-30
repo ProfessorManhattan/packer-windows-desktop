@@ -31,10 +31,7 @@
       "communicator": "{{ user `communicator` }}",
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{ user `disk_size` }}",
-      "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/scripts/base_setup.ps1"
-      ],
+      "floppy_files": ["{{ template_dir }}/Autounattend.xml", "{{ template_dir }}/scripts/base_setup.ps1"],
       "headless": "{{ user `headless` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
       "iso_url": "{{ user `iso_url` }}",
@@ -53,10 +50,7 @@
       "communicator": "{{ user `communicator` }}",
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{ user `disk_size` }}",
-      "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/scripts/base_setup.ps1"
-      ],
+      "floppy_files": ["{{ template_dir }}/Autounattend.xml", "{{ template_dir }}/scripts/base_setup.ps1"],
       "guest_os_type": "win-10",
       "iso_checksum": "{{ user `iso_checksum` }}",
       "iso_url": "{{ user `iso_url` }}",
@@ -64,14 +58,7 @@
       "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-{{ .Provider }}",
       "parallels_tools_flavor": "win",
       "parallels_tools_mode": "attach",
-      "prlctl": [
-        [
-          "set",
-          "{{ .Name }}",
-          "--efi-boot",
-          "off"
-        ]
-      ],
+      "prlctl": [["set", "{{ .Name }}", "--efi-boot", "off"]],
       "prlctl_version_file": ".prlctl_version",
       "shutdown_command": "{{ user `shutdown_command` }}",
       "shutdown_timeout": "{{ user `shutdown_timeout` }}",
@@ -85,28 +72,16 @@
       "communicator": "{{ user `communicator` }}",
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{ user `disk_size` }}",
-      "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/scripts/base_setup.ps1"
-      ],
+      "floppy_files": ["{{ template_dir }}/Autounattend.xml", "{{ template_dir }}/scripts/base_setup.ps1"],
       "headless": "{{ user `headless` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
       "iso_url": "{{ user `iso_url` }}",
       "memory": "{{ user `memory` }}",
       "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-{{ .Provider }}",
       "qemuargs": [
-        [
-          "-m",
-          "{{ user `memory` }}"
-        ],
-        [
-          "-smp",
-          "{{ user `cpus` }}"
-        ],
-        [
-          "-drive",
-          "file={{ template_dir }}/{{ user `virtio_file` }},media=cdrom,index=3"
-        ],
+        ["-m", "{{ user `memory` }}"],
+        ["-smp", "{{ user `cpus` }}"],
+        ["-drive", "file={{ template_dir }}/{{ user `virtio_file` }},media=cdrom,index=3"],
         [
           "-drive",
           "file={{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-{{ .Provider }}/{{ .Name }},if=virtio,cache=writeback,discard=ignore,format=qcow2,index=1"
@@ -124,10 +99,7 @@
       "communicator": "{{ user `communicator` }}",
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{ user `disk_size` }}",
-      "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/scripts/base_setup.ps1"
-      ],
+      "floppy_files": ["{{ template_dir }}/Autounattend.xml", "{{ template_dir }}/scripts/base_setup.ps1"],
       "guest_additions_mode": "attach",
       "guest_additions_path": "C:/Users/Vagrant/VBoxGuestAdditions.iso",
       "guest_additions_url": "{{ user `guest_additions_url` }}",
@@ -142,18 +114,8 @@
       "shutdown_command": "{{ user `shutdown_command` }}",
       "shutdown_timeout": "{{ user `shutdown_timeout` }}",
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{ .Name }}",
-          "--vram",
-          "48"
-        ],
-        [
-          "modifyvm",
-          "{{ .Name }}",
-          "--audio",
-          "none"
-        ]
+        ["modifyvm", "{{ .Name }}", "--vram", "48"],
+        ["modifyvm", "{{ .Name }}", "--audio", "none"]
       ],
       "vm_name": "{{ user `vm_name` }}",
       "winrm_password": "{{ user `winrm_password` }}",
@@ -166,10 +128,7 @@
       "cpus": "{{ user `cpus` }}",
       "disk_adapter_type": "lsisas1068",
       "disk_size": "{{ user `disk_size` }}",
-      "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/scripts/base_setup.ps1"
-      ],
+      "floppy_files": ["{{ template_dir }}/Autounattend.xml", "{{ template_dir }}/scripts/base_setup.ps1"],
       "guest_os_type": "windows9srv-64",
       "headless": "{{ user `headless` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -208,23 +167,16 @@
   "provisioners": [
     {
       "type": "chef-solo",
-      "cookbook_paths": [
-        "{{ template_dir }}/cookbooks"
-      ],
+      "cookbook_paths": ["{{ template_dir }}/cookbooks"],
       "guest_os_type": "windows",
-      "run_list": [
-        "packer::configure_power",
-        "packer::disable_screensaver"
-      ]
+      "run_list": ["packer::configure_power", "packer::disable_screensaver"]
     },
     {
       "type": "windows-restart"
     },
     {
       "type": "chef-solo",
-      "cookbook_paths": [
-        "{{ template_dir }}/cookbooks"
-      ],
+      "cookbook_paths": ["{{ template_dir }}/cookbooks"],
       "guest_os_type": "windows",
       "run_list": [
         "packer::vm_tools",
@@ -239,14 +191,9 @@
     },
     {
       "type": "chef-solo",
-      "cookbook_paths": [
-        "{{ template_dir }}/cookbooks"
-      ],
+      "cookbook_paths": ["{{ template_dir }}/cookbooks"],
       "guest_os_type": "windows",
-      "run_list": [
-        "packer::cleanup",
-        "packer::defrag"
-      ]
+      "run_list": ["packer::cleanup", "packer::defrag"]
     },
     {
       "type": "powershell",

@@ -1,0 +1,1 @@
+../.modules/bento/packer_templates/windows/scripts/base_setup.ps1
