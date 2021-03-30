@@ -12,7 +12,7 @@
     "headless": "true",
     "hyperv_switch": "bento",
     "iso_checksum": "b555f93a9d01b0d77c4693f834187552",
-    "iso_url": "https://software-download.microsoft.com/db/Windows10_InsiderPreview_EnterpriseVL__x64_en-us_19043.iso?t=5877ee80-30e6-4cf4-882e-3e038ea13e0f&e=1617158373&h=ae0e9124011f308f60a719078f721ffe",
+    "iso_url": "windows.iso",
     "iso_version": "10.0.19043",
     "memory": "4096",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
