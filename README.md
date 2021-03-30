@@ -15,7 +15,7 @@
 </div>
 <p style="text-align:center;">
   <a href="https://gitlab.com/megabyte-space/packer/Base-Windows-Desktop">
-    <img alt="Version" src="https://img.shields.io/badge/version-10.0.18363-blue.svg?cacheSeconds=2592000" />
+    <img alt="Version" src="https://img.shields.io/badge/version-10.0.19043-blue.svg?cacheSeconds=2592000" />
   </a>
   <a href="https://megabyte.space/docs/packer" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />

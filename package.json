@@ -6,9 +6,9 @@
   "version": "1.0.0",
   "scripts": {
     "build": "packer build template.json",
-    "build:hyperv": "packer build -only=kvm template.json",
+    "build:hyperv": "packer build -only=hyperv-iso template.json",
     "build:kvm": "packer build -only=qemu template.json",
-    "build:parallels": "packer build -only=parallels template.json",
+    "build:parallels": "packer build -only=parallels-iso template.json",
     "build:virtualbox": "packer build -only=virtualbox-iso template.json",
     "build:vmware": "packer build -only=vmware-iso template.json",
     "commit": "git-cz",
