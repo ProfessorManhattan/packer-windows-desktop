@@ -1,0 +1,16 @@
+[submodule ".modules/packer"]
+	path = .modules/packer
+	url = https://gitlab.com/megabyte-space/common/packer.git
+	branch = master
+[submodule ".modules/bento"]
+	path = .modules/bento
+	url = https://github.com/chef/bento.git
+	branch = master
+[submodule ".modules/docs"]
+	path = .modules/docs
+	url = https://gitlab.com/megabyte-space/documentation/packer.git
+	branch = master
+[submodule ".modules/shared"]
+	path = .modules/shared
+	url = https://gitlab.com/megabyte-space/common/shared.git
+	branch = master
