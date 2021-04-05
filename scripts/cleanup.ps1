@@ -1,1 +1,0 @@
-../.modules/bento/packer_templates/windows/scripts/cleanup.ps1

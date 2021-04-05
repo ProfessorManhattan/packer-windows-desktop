@@ -75,7 +75,7 @@ Please note that not all of [our Packer projects](https://gitlab.com/megabyte-sp
 
 ## ➤ Requirements
 
-* At least one of the above virtualization platforms installed ([VirtualBox]((https://gitlab.com/megabyte-space/ansible-roles/virtualbox)) is a good starting point if you do not already have one of the platforms installed)
+* At least one of the above virtualization platforms installed ([VirtualBox](https://gitlab.com/megabyte-space/ansible-roles/virtualbox) is a good starting point if you do not already have one of the platforms installed)
 * [Packer](https://gitlab.com/megabyte-space/ansible-roles/packer)
 * [Vagrant](https://gitlab.com/megabyte-space/ansible-roles/vagrant)
 
