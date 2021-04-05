@@ -17,6 +17,7 @@
     "iso_url": "windows.iso",
     "iso_version": "10.0.19043",
     "memory": "4096",
+    "restart_timeout": "5m",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
     "shutdown_timeout": "15m",
     "vagrantup_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
@@ -243,40 +244,43 @@
   ],
   "provisioners": [
     {
-      "type": "chef-solo",
-      "cookbook_paths": ["{{ template_dir }}/cookbooks"],
-      "guest_os_type": "windows",
-      "run_list": ["packer::configure_power", "packer::disable_screensaver"]
-    },
-    {
-      "type": "windows-restart"
-    },
-    {
-      "type": "chef-solo",
-      "cookbook_paths": ["{{ template_dir }}/cookbooks"],
-      "guest_os_type": "windows",
-      "run_list": [
-        "packer::vm_tools",
-        "packer::features",
-        "packer::enable_file_sharing",
-        "packer::enable_remote_desktop",
-        "packer::ui_tweaks"
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "remote_path": "/tmp/script.bat",
+      "scripts": [
+        "{{ template_dir }}/scripts/enable-rdp.bat"
       ]
     },
     {
-      "type": "windows-restart"
+      "type": "powershell",
+      "scripts": [
+        "{{ template_dir }}/scripts/vm-guest-tools.ps1",
+        "{{ template_dir }}/scripts/debloat-windows.ps1"
+      ]
     },
     {
-      "type": "chef-solo",
-      "cookbook_paths": ["{{ template_dir }}/cookbooks"],
-      "guest_os_type": "windows",
-      "run_list": ["packer::cleanup", "packer::defrag"]
+      "type": "windows-restart",
+      "restart_timeout": "{{ user `restart_timeout` }}"
     },
     {
       "type": "powershell",
-      "elevated_password": "vagrant",
-      "elevated_user": "vagrant",
-      "script": "{{ template_dir }}/scripts/cleanup.ps1"
+      "scripts": [
+        "{{ template_dir }}/scripts/set-powerplan.ps1",
+        "{{ template_dir }}/scripts/disable-windows-defender.ps1"
+      ]
+    },
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "remote_path": "/tmp/script.bat",
+      "scripts": [
+        "{{ template_dir }}/scripts/pin-powershell.bat",
+        "{{ template_dir }}/scripts/compile-dotnet-assemblies.bat",
+        "{{ template_dir }}/scripts/set-winrm-automatic.bat",
+        "{{ template_dir }}/scripts/uac-enable.bat",
+        "{{ template_dir }}/scripts/dis-updates.bat",
+        "{{ template_dir }}/scripts/compact.bat"
+      ]
     }
   ]
 }

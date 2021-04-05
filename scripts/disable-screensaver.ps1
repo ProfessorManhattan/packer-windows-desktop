@@ -1,0 +1,1 @@
+../.modules/windows/scripts/disable-screensaver.ps1

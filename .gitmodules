@@ -16,5 +16,5 @@
 	branch = master
 [submodule ".modules/windows"]
 	path = .modules/windows
-	url = https://github.com/StefanScherer/packer-windows.git
+	url = https://github.com/StefanScherer/packer-windows
 	branch = main

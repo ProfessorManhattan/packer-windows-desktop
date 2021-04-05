@@ -1,0 +1,1 @@
+../.modules/windows/scripts/debloat-windows.ps1

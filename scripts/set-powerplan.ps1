@@ -1,0 +1,1 @@
+../.modules/windows/scripts/set-powerplan.ps1

@@ -1,0 +1,1 @@
+../.modules/windows/scripts/compile-dotnet-assemblies.bat

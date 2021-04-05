@@ -1,0 +1,1 @@
+../.modules/windows/scripts/vm-guest-tools.ps1

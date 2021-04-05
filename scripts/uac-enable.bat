@@ -1,0 +1,1 @@
+../.modules/windows/scripts/uac-enable.bat

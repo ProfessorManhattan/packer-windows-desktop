@@ -1,0 +1,1 @@
+../.modules/windows/scripts/docker/disable-windows-defender.ps1
