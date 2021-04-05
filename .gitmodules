@@ -14,3 +14,7 @@
 	path = .modules/shared
 	url = https://gitlab.com/megabyte-space/common/shared.git
 	branch = master
+[submodule ".modules/windows"]
+	path = .modules/windows
+	url = https://github.com/StefanScherer/packer-windows.git
+	branch = main
