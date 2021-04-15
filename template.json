@@ -2,7 +2,7 @@
   "variables": {
     "boot_command": "",
     "boot_wait": "6m",
-    "box_basename": "Base-Windows-Desktop",
+    "box_basename": "Windows-Desktop",
     "build_directory": "../../builds",
     "communicator": "winrm",
     "compression_level": "9",
