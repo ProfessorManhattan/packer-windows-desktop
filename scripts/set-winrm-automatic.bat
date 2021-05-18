@@ -1,1 +1,0 @@
-../.modules/windows/scripts/set-winrm-automatic.bat

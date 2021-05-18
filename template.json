@@ -13,15 +13,18 @@
     "guest_additions_url": "",
     "headless": "false",
     "hyperv_switch": "bento",
-    "iso_checksum": "b555f93a9d01b0d77c4693f834187552",
-    "iso_url": "windows.iso",
+    "iso_checksum": "56ab095075be28a90bc0b510835280975c6bb2ce",
+    "iso_url": "http://download.microsoft.com/download/C/3/9/C399EEA8-135D-4207-92C9-6AAB3259F6EF/10240.16384.150709-1700.TH1_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO",
     "iso_version": "10.0.19043",
     "memory": "4096",
     "restart_timeout": "5m",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
     "shutdown_timeout": "15m",
+    "ssh_password": "vagrant",
+    "ssh_username": "vagrant",
+    "ssh_wait_timeout": "2h",
     "vagrantup_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
-    "vagrantup_user": "ProfessorManhattan",
+    "vagrantup_user": "Megabyte",
     "virtio_file": "virtio-win.iso",
     "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
     "winrm_password": "vagrant",
@@ -39,13 +42,10 @@
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
         "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
-        "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.ps1",
         "{{ template_dir }}/scripts/microsoft-updates.bat",
-        "{{ template_dir }}/scripts/win-updates.ps1"
+        "{{ template_dir }}/scripts/win-updates.ps1",
+        "{{ template_dir }}/scripts/openssh.ps1"
       ],
       "guest_additions_mode": "none",
       "headless": "{{ user `headless` }}",
@@ -55,6 +55,9 @@
       "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-{{ .Provider }}",
       "shutdown_command": "{{ user `shutdown_command` }}",
       "shutdown_timeout": "{{ user `shutdown_timeout` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_wait_timeout": "{{ user `ssh_wait_timeout` }}",
       "switch_name": "{{ user `hyperv_switch` }}",
       "vm_name": "{{ user `vm_name` }}",
       "winrm_password": "{{ user `winrm_password` }}",
@@ -70,13 +73,10 @@
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
         "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
-        "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.ps1",
         "{{ template_dir }}/scripts/microsoft-updates.bat",
-        "{{ template_dir }}/scripts/win-updates.ps1"
+        "{{ template_dir }}/scripts/win-updates.ps1",
+        "{{ template_dir }}/scripts/openssh.ps1"
       ],
       "guest_os_type": "win-10",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -87,11 +87,18 @@
       "parallels_tools_mode": "attach",
       "prlctl": [
         ["set", "{{ .Name }}", "--adaptive-hypervisor", "on"],
-        ["set", "{{ .Name }}", "--efi-boot", "off"]
+        ["set", "{{ .Name }}", "--cpus", "{{ user `cpus` }}"],
+        ["set", "{{ .Name }}", "--efi-boot", "off"],
+        ["set", "{{ .Name }}", "--memsize", "{{ user `memory` }}"],
+        ["set", "{{ .Name }}", "--startup-view", "window"],
+        ["set", "{{ .Name }}", "--winsystray-in-macmenu", "off"]
       ],
       "prlctl_version_file": ".prlctl_version",
       "shutdown_command": "{{ user `shutdown_command` }}",
       "shutdown_timeout": "{{ user `shutdown_timeout` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_wait_timeout": "{{ user `ssh_wait_timeout` }}",
       "vm_name": "{{ user `vm_name` }}",
       "winrm_password": "{{ user `winrm_password` }}",
       "winrm_timeout": "{{ user `winrm_timeout` }}",
@@ -107,13 +114,10 @@
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
         "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
-        "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.ps1",
         "{{ template_dir }}/scripts/microsoft-updates.bat",
-        "{{ template_dir }}/scripts/win-updates.ps1"
+        "{{ template_dir }}/scripts/win-updates.ps1",
+        "{{ template_dir }}/scripts/openssh.ps1"
       ],
       "headless": "{{ user `headless` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -132,6 +136,9 @@
       ],
       "shutdown_command": "{{ user `shutdown_command` }}",
       "shutdown_timeout": "{{ user `shutdown_timeout` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_wait_timeout": "{{ user `ssh_wait_timeout` }}",
       "vm_name": "{{ user `vm_name` }}",
       "winrm_password": "{{ user `winrm_password` }}",
       "winrm_timeout": "{{ user `winrm_timeout` }}",
@@ -146,13 +153,10 @@
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
         "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
-        "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.ps1",
         "{{ template_dir }}/scripts/microsoft-updates.bat",
-        "{{ template_dir }}/scripts/win-updates.ps1"
+        "{{ template_dir }}/scripts/win-updates.ps1",
+        "{{ template_dir }}/scripts/openssh.ps1"
       ],
       "guest_additions_mode": "attach",
       "guest_additions_path": "C:/Users/Vagrant/VBoxGuestAdditions.iso",
@@ -167,9 +171,14 @@
       "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-{{ .Provider }}",
       "shutdown_command": "{{ user `shutdown_command` }}",
       "shutdown_timeout": "{{ user `shutdown_timeout` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_wait_timeout": "{{ user `ssh_wait_timeout` }}",
       "vboxmanage": [
-        ["modifyvm", "{{ .Name }}", "--vram", "128"],
-        ["modifyvm", "{{ .Name }}", "--audio", "none"]
+        ["modifyvm", "{{ .Name }}", "--audio", "none"],
+        ["modifyvm", "{{ .Name }}", "--cpus", "{{ user `cpus` }}"],
+        ["modifyvm", "{{ .Name }}", "--memory", "{{ user `memory` }}"],
+        ["modifyvm", "{{ .Name }}", "--vram", "128"]
       ],
       "vm_name": "{{ user `vm_name` }}",
       "winrm_password": "{{ user `winrm_password` }}",
@@ -187,13 +196,10 @@
       "disk_type_id": "1",
       "floppy_files": [
         "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
-        "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.ps1",
         "{{ template_dir }}/scripts/microsoft-updates.bat",
-        "{{ template_dir }}/scripts/win-updates.ps1"
+        "{{ template_dir }}/scripts/win-updates.ps1",
+        "{{ template_dir }}/scripts/openssh.ps1"
       ],
       "guest_os_type": "windows9-64",
       "headless": "{{ user `headless` }}",
@@ -203,13 +209,18 @@
       "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-{{ .Provider }}",
       "shutdown_command": "{{ user `shutdown_command` }}",
       "shutdown_timeout": "{{ user `shutdown_timeout` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_wait_timeout": "{{ user `ssh_wait_timeout` }}",
       "tools_upload_flavor": "windows",
-      "tools_upload_path": "C:/Windows/Temp/vmware.iso",
       "version": 14,
       "vm_name": "{{ user `vm_name` }}",
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
-        "RemoteDisplay.vnc.port": 5900
+        "RemoteDisplay.vnc.port": 5900,
+        "memsize": "{{ user `memory_size` }}",
+        "numvcpus": "{{ user `cpus` }}",
+        "scsi0.virtualDev": "lsisas1068"
       },
       "vmx_remove_ethernet_interfaces": true,
       "vnc_port_max": 5980,
@@ -239,18 +250,11 @@
   ],
   "provisioners": [
     {
-      "type": "windows-shell",
-      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
-      "remote_path": "/tmp/script.bat",
-      "scripts": [
-        "{{ template_dir }}/scripts/enable-rdp.bat"
-      ]
-    },
-    {
       "type": "powershell",
       "scripts": [
         "{{ template_dir }}/scripts/vm-guest-tools.ps1",
-        "{{ template_dir }}/scripts/debloat-windows.ps1"
+        "{{ template_dir }}/scripts/debloat-windows.ps1",
+        "{{ template_dir }}/scripts/disable-screensaver.ps1"
       ]
     },
     {
@@ -261,8 +265,7 @@
       "type": "powershell",
       "scripts": [
         "{{ template_dir }}/scripts/set-powerplan.ps1",
-        "{{ template_dir }}/scripts/disable-windows-defender.ps1",
-        "{{ template_dir }}/scripts/openssh.ps1"
+        "{{ template_dir }}/scripts/disable-windows-defender.ps1"
       ]
     },
     {
@@ -270,14 +273,13 @@
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "remote_path": "/tmp/script.bat",
       "scripts": [
-        "{{ template_dir }}/scripts/pin-powershell.bat",
-        "{{ template_dir }}/scripts/compile-dotnet-assemblies.bat",
-        "{{ template_dir }}/scripts/set-winrm-automatic.bat",
+        "{{ template_dir }}/scripts/enable-rdp.bat",
         "{{ template_dir }}/scripts/uac-enable.bat",
         "{{ template_dir }}/scripts/dis-updates.bat",
-        "{{ template_dir }}/scripts/compact.bat",
         "{{ template_dir }}/scripts/disable-tasks.bat",
-        "{{ template_dir }}/scripts/vagrant-ssh.bat"
+        "{{ template_dir }}/scripts/vagrant-ssh.bat",
+        "{{ template_dir }}/scripts/compact.bat",
+        "{{ template_dir }}/scripts/compile-dotnet-assemblies.bat"
       ]
     }
   ]

@@ -1,1 +1,0 @@
-../.modules/windows/scripts/pin-powershell.bat
