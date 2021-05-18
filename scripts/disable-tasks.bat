@@ -1,0 +1,1 @@
+../.modules/windows/scripts/disable-tasks.bat

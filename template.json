@@ -43,7 +43,6 @@
         "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.ps1",
         "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.ps1",
         "{{ template_dir }}/scripts/enable-winrm.ps1",
         "{{ template_dir }}/scripts/microsoft-updates.bat",
         "{{ template_dir }}/scripts/win-updates.ps1"
@@ -75,7 +74,6 @@
         "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.ps1",
         "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.ps1",
         "{{ template_dir }}/scripts/enable-winrm.ps1",
         "{{ template_dir }}/scripts/microsoft-updates.bat",
         "{{ template_dir }}/scripts/win-updates.ps1"
@@ -113,7 +111,6 @@
         "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.ps1",
         "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.ps1",
         "{{ template_dir }}/scripts/enable-winrm.ps1",
         "{{ template_dir }}/scripts/microsoft-updates.bat",
         "{{ template_dir }}/scripts/win-updates.ps1"
@@ -153,7 +150,6 @@
         "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.ps1",
         "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.ps1",
         "{{ template_dir }}/scripts/enable-winrm.ps1",
         "{{ template_dir }}/scripts/microsoft-updates.bat",
         "{{ template_dir }}/scripts/win-updates.ps1"
@@ -195,7 +191,6 @@
         "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.ps1",
         "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.ps1",
         "{{ template_dir }}/scripts/enable-winrm.ps1",
         "{{ template_dir }}/scripts/microsoft-updates.bat",
         "{{ template_dir }}/scripts/win-updates.ps1"
@@ -266,7 +261,8 @@
       "type": "powershell",
       "scripts": [
         "{{ template_dir }}/scripts/set-powerplan.ps1",
-        "{{ template_dir }}/scripts/disable-windows-defender.ps1"
+        "{{ template_dir }}/scripts/disable-windows-defender.ps1",
+        "{{ template_dir }}/scripts/openssh.ps1"
       ]
     },
     {
@@ -279,7 +275,9 @@
         "{{ template_dir }}/scripts/set-winrm-automatic.bat",
         "{{ template_dir }}/scripts/uac-enable.bat",
         "{{ template_dir }}/scripts/dis-updates.bat",
-        "{{ template_dir }}/scripts/compact.bat"
+        "{{ template_dir }}/scripts/compact.bat",
+        "{{ template_dir }}/scripts/disable-tasks.bat",
+        "{{ template_dir }}/scripts/vagrant-ssh.bat"
       ]
     }
   ]
