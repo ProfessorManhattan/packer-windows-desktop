@@ -46,7 +46,7 @@
       <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat" />
     </a>
     <a href="profile.opencollective" title="Support us on Open Collective" target="_blank">
-      <img alt="Open Collective sponsors" src="https://img.shields.io/opencollective/sponsors/megabytelabs?logo=opencollective&style=flat" />
+      <img alt="Open Collective sponsors" src="https://img.shields.io/opencollective/sponsors/megabytelabs?label=Open%20Collective%20sponsors&logo=opencollective&style=flat" />
     </a>
     <a href="https://github.com/ProfessorManhattan" title="Support us on GitHub" target="_blank">
       <img alt="GitHub sponsors" src="https://img.shields.io/github/sponsors/ProfessorManhattan?label=GitHub%20sponsors&logo=github&style=flat" />
