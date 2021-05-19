@@ -91,7 +91,7 @@ This repository automates most of the process of keeping our [Windows 10 Enterpr
 
 ### Supported Virtualization Platforms
 
-Most of our repositories support creating boxes for the following virtualization platforms:
+This project supports creating boxes for the following virtualization platforms:
 
 - [Hyper-V](https://gitlab.com/megabyte-labs/ansible-roles/hyperv) <!-- SUPPORTED_OS_HYPERV -->
 - [KVM](https://gitlab.com/megabyte-labs/ansible-roles/kvm) <!-- SUPPORTED_OS_KVM -->
