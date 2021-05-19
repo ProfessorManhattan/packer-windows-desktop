@@ -1,7 +1,7 @@
 {
   "name": "@megabytelabs/packer-windows-desktop",
   "version": "1.0.0",
-  "description": "A Windows 10 Enterprise Packer project that includes WinRM, SSH, image minification, and other sensible defaults",
+  "description": "A Windows 10 Enterprise (Insider's Preview) Packer project that enables both WinRM and SSH",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "scripts": {

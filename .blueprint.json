@@ -1,6 +1,7 @@
 {
   "badge_style": "flat",
   "description_template": "Windows MAJOR_VERSION Enterprise (Insider's Preview)",
+  "description_template_package": "A Windows MAJOR_VERSION Enterprise (Insider's Preview) Packer project that enables both WinRM and SSH",
   "hostname": "vagrant-windows",
   "slug": "windows-desktop",
   "vagrant_tag": "windows"
