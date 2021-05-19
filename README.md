@@ -1,5 +1,5 @@
 <!-- ⚠️ This README has been generated from the file(s) "./.modules/docs/blueprint-readme.md" ⚠️-->\<div align="center">
-  <center><img alt="role_pretty_name logo" src="./logo.png" /></center>
+  <center><img alt="Windows 10 Enterprise (Insider Preview) logo" src="./logo.png" /></center>
 </div>
 <div align="center">
   <center><h1 align="center">Packer Template: Windows 10 Enterprise (Insider Preview)</h1></center>
