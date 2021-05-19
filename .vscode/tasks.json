@@ -77,7 +77,7 @@
     {
       "label": "Setup: Install Python",
       "type": "shell",
-      "command": "", // example for Ubuntu 20.04: sudo apt-get install python3 python3-netaddr python3-pip
+      "command": "",
       "windows": {
         "command": ""
       }

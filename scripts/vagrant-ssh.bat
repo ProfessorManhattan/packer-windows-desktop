@@ -1,1 +1,0 @@
-../.modules/windows/scripts/vagrant-ssh.bat
