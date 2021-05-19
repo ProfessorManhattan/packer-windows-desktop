@@ -256,7 +256,6 @@
       {
         "type": "vagrant",
         "compression_level": "{{ user `compression_level` }}",
-        "keep_input_artifact": true,
         "output": "{{ user `build_directory` }}/{{ user `box_basename` }}.{{ .Provider }}.box",
         "vagrantfile_template": "{{ template_dir }}/Vagrantfile"
       },
