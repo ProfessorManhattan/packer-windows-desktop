@@ -3,7 +3,7 @@
     "boot_command": "",
     "boot_wait": "6m",
     "box_basename": "Windows-Desktop",
-    "build_directory": "./builds",
+    "build_directory": "build",
     "communicator": "winrm",
     "compression_level": "9",
     "cpus": "2",
