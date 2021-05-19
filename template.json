@@ -7,7 +7,7 @@
     "communicator": "winrm",
     "compression_level": "9",
     "cpus": "2",
-    "description": "Windows 10 Enterprise (Insider Preview)",
+    "description": "Windows 10 Enterprise (Insider's Preview)",
     "disk_size": "50000",
     "guest_additions_mode": "attach",
     "guest_additions_url": "",
@@ -258,7 +258,7 @@
         "compression_level": "{{ user `compression_level` }}",
         "keep_input_artifact": true,
         "output": "{{ user `build_directory` }}/{{ user `box_basename` }}.{{ .Provider }}.box",
-        "vagrantfile_template": "{{ template_dir }}/Vagrantfile.template"
+        "vagrantfile_template": "{{ template_dir }}/Vagrantfile"
       },
       {
         "type": "vagrant-cloud",

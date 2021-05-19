@@ -1,4 +1,7 @@
 {
   "badge_style": "flat",
-  "slug": "windows-desktop"
+  "description_template": "Windows MAJOR_VERSION Enterprise (Insider's Preview)",
+  "hostname": "vagrant-windows",
+  "slug": "windows-desktop",
+  "vagrant_tag": "windows"
 }
