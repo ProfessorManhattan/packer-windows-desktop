@@ -64,7 +64,7 @@
   </p>
 </div>
 
-> </br><h3 align="center">**A Windows 10 Enterprise Packer project that includes WinRM, SSH, image minification, and other sensible defaults**</h3></br>
+> </br><h3 align="center">**A Windows 10 Enterprise (Insider's Preview) Packer project that enables both WinRM and SSH**</h3></br>
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 

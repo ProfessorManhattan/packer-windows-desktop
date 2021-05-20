@@ -4,5 +4,6 @@
   "description_template_package": "A Windows MAJOR_VERSION Enterprise (Insider's Preview) Packer project that enables both WinRM and SSH",
   "hostname": "vagrant-windows",
   "slug": "windows-desktop",
-  "vagrant_tag": "windows"
+  "vagrant_tag": "windows",
+  "version_description": "Compact Windows 10 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM and SSH. Bloat removed. See https://gitlab.com/megabyte-labs/packer/windows-desktop for more details."
 }

@@ -25,6 +25,7 @@
     "ssh_wait_timeout": "2h",
     "vagrantup_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
     "vagrantup_user": "Megabyte",
+    "version_description": "Compact Windows 10 Enterprise (Insider's Preview) 10.0.21354. Includes WinRM and SSH. Bloat removed. See https://gitlab.com/megabyte-labs/packer/windows-desktop for more details.",
     "virtio_file": "virtio-win.iso",
     "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
     "winrm_password": "vagrant",
@@ -263,7 +264,7 @@
         "type": "vagrant-cloud",
         "access_token": "{{ user `vagrantup_token` }}",
         "box_tag": "{{ user `vagrantup_user` }}/{{ user `box_basename` }}",
-        "version_description": "{{ user `description` }} version {{ user `iso_version` }}",
+        "version_description": "{{ user `version_description` }}",
         "version": "{{ user `iso_version` }}"
       }
     ]
