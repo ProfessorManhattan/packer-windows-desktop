@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
       v.hyperv_feature :name => 'relaxed', :state => 'on'
       v.hyperv_feature :name => 'vapic', :state => 'on'
       v.hyperv_feature :name => 'synic', :state => 'on'
-  end
+    end
 
 
     windows.vm.provider :parallels do |v|
@@ -70,6 +70,7 @@ Vagrant.configure("2") do |config|
       v.gui = true
       v.vmx["memsize"] = "4096"
       v.vmx["numvcpus"] = "2"
+    end
 
     windows.vm.provider :vmware_workstation do |v|
       v.gui = true
