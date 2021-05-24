@@ -12,7 +12,6 @@ Vagrant.configure("2") do |config|
   config.vm.define :windows do |windows|
     windows.vm.box="Megabyte/Windows-Desktop"
     windows.vm.hostname = "vagrant-windows"
-    #windows.vm.name = "Windows 10 Enterprise (Insider's Preview)" TODO: Figure out how to set name globally if possible
     windows.vm.network :forwarded_port, guest: 22, host: 58022, id: "ssh", auto_correct: true
     windows.vm.network :forwarded_port, guest: 3389, host: 53389, id: "rdp", auto_correct: true
     windows.vm.network :forwarded_port, guest: 443, host: 58443, id: "https", auto_correct: true
@@ -22,11 +21,12 @@ Vagrant.configure("2") do |config|
     windows.vm.provider :hyperv do |v|
       v.cpus = 2
       v.maxmemory = 4096
+      v.vmname = "Windows 10 Enterprise (Insider's Preview)"
     end
 
     windows.vm.provider :libvirt do |v, override|
-      v.memory = 4096
       v.cpus = 2
+      v.memory = 4096
       # Use WinRM for the default synced folder; or disable it if
       # WinRM is not available. Linux hosts don't support SMB,
       # and Windows guests don't support NFS/9P/rsync
@@ -53,17 +53,19 @@ Vagrant.configure("2") do |config|
 
     windows.vm.provider :virtualbox do |v|
       v.check_guest_additions = true
+      v.cpus = 2
       v.customize ["modifyvm", :id, "--accelerate3d", "on"]
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
-      v.customize ["modifyvm", :id, "--cpus", "4"]
+      v.customize ["modifyvm", :id, "--cpus", "2"]
       v.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
       v.customize ["modifyvm", :id, "--hwvirtex", "on"]
       v.customize ["modifyvm", :id, "--memory", "4096"]
-      v.customize ["modifyvm", :id, "--natdnsresolver1", "on"]
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--vram", "256"]
       v.customize ["setextradata", "global", "GUI/SuppressMessages", "all"]
+      v.gui = true
       v.memory = 4096
-      v.cpus = 2
+      v.name = "Windows 10 Enterprise (Insider's Preview)"
     end
 
     windows.vm.provider :vmware_fusion do |v|
