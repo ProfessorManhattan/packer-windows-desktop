@@ -47,7 +47,7 @@ Vagrant.configure("2") do |config|
     windows.vm.provider :parallels do |v|
       v.cpus = 2
       v.memory = 4096
-      v.name = "Ubuntu Desktop"
+      v.name = "Windows 10 Enterprise (Insider's Preview)"
       v.update_guest_tools = true
     end
 
