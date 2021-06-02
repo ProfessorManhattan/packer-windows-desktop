@@ -271,12 +271,6 @@
   ],
   "provisioners": [
     {
-      "type": "windows-shell",
-      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
-      "remote_path": "/tmp/script.bat",
-      "scripts": ["{{ template_dir }}/scripts/enable-rdp.bat"]
-    },
-    {
       "type": "powershell",
       "scripts": [
         "{{ template_dir }}/scripts/vm-guest-tools.ps1",
@@ -303,6 +297,7 @@
         "{{ template_dir }}/scripts/pin-powershell.bat",
         "{{ template_dir }}/scripts/compile-dotnet-assemblies.bat",
         "{{ template_dir }}/scripts/set-winrm-automatic.bat",
+        "{{ template_dir }}/scripts/enable-rdp.bat",
         "{{ template_dir }}/scripts/uac-enable.bat",
         "{{ template_dir }}/scripts/dis-updates.bat",
         "{{ template_dir }}/scripts/disable-tasks.bat",
