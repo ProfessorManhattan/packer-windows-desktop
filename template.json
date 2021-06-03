@@ -1,7 +1,7 @@
 {
   "variables": {
     "boot_command": "",
-    "boot_wait": "6m",
+    "boot_wait": "20m",
     "box_basename": "Windows-Desktop",
     "build_directory": "build",
     "communicator": "winrm",
@@ -17,9 +17,9 @@
     "iso_url": "windows.iso",
     "iso_version": "10.0.21354",
     "memory": "4096",
-    "restart_timeout": "5m",
+    "restart_timeout": "20m",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-    "shutdown_timeout": "15m",
+    "shutdown_timeout": "20m",
     "ssh_password": "vagrant",
     "ssh_username": "vagrant",
     "ssh_wait_timeout": "2h",
@@ -286,7 +286,9 @@
       "type": "powershell",
       "scripts": [
         "{{ template_dir }}/scripts/set-powerplan.ps1",
-        "{{ template_dir }}/scripts/disable-windows-defender.ps1"
+        "{{ template_dir }}/scripts/disable-windows-defender.ps1",
+        "{{ template_dir }}/scripts/install-chocolatey.custom.ps1",
+        "{{ template_dir }}/scripts/install-python.custom.ps1"
       ]
     },
     {
