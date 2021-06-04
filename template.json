@@ -305,6 +305,12 @@
         "{{ template_dir }}/scripts/disable-tasks.bat",
         "{{ template_dir }}/scripts/compact.bat"
       ]
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "{{ template_dir }}/scripts/cleanup.custom.ps1"
+      ]
     }
   ]
 }
