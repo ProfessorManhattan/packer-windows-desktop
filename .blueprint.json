@@ -5,5 +5,5 @@
   "hostname": "vagrant-windows",
   "slug": "windows-desktop",
   "vagrant_tag": "windows",
-  "version_description": "Compact Windows 10 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM and SSH. Bloat removed. See https://gitlab.com/megabyte-labs/packer/windows-desktop for more details."
+  "version_description": "Compact Windows 10 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM, SSH, Python 3, and Chocolatey. Perfect for Ansible testing. Bloat removed. See https://gitlab.com/megabyte-labs/packer/windows-desktop for more details."
 }

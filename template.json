@@ -10,13 +10,14 @@
     "description": "Windows 10 Enterprise (Insider's Preview)",
     "disk_size": "50000",
     "guest_additions_mode": "attach",
-    "guest_additions_url": "",
+    "guest_additions_url": "VBoxGuestAdditions.iso",
     "headless": "false",
     "hyperv_switch": "bento",
     "iso_checksum": "281281d1d01f9bfd18851b07d8e31254993c0a55c421124fb6d5cb20e4294132",
     "iso_url": "windows.iso",
     "iso_version": "10.0.21354",
     "memory": "4096",
+    "provisioning_delay": "600",
     "restart_timeout": "20m",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
     "shutdown_timeout": "20m",
@@ -25,7 +26,7 @@
     "ssh_wait_timeout": "2h",
     "vagrantup_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
     "vagrantup_user": "Megabyte",
-    "version_description": "Compact Windows 10 Enterprise (Insider's Preview) 10.0.21354. Includes WinRM and SSH. Bloat removed. See https://gitlab.com/megabyte-labs/packer/windows-desktop for more details.",
+    "version_description": "Compact Windows 10 Enterprise (Insider's Preview) 10.0.21354. Includes WinRM, SSH, Python 3, and Chocolatey. Perfect for Ansible testing. Bloat removed. See https://gitlab.com/megabyte-labs/packer/windows-desktop for more details.",
     "virtio_file": "virtio-win.iso",
     "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
     "winrm_password": "vagrant",
@@ -271,6 +272,10 @@
   ],
   "provisioners": [
     {
+      "type": "shell-local",
+      "command": "sleep {{ user `provisioning_delay` }}"
+    },
+    {
       "type": "powershell",
       "scripts": [
         "{{ template_dir }}/scripts/vm-guest-tools.ps1",
@@ -308,9 +313,11 @@
     },
     {
       "type": "powershell",
-      "scripts": [
-        "{{ template_dir }}/scripts/cleanup.custom.ps1"
-      ]
+      "scripts": ["{{ template_dir }}/scripts/cleanup.custom.ps1"]
+    },
+    {
+      "type": "windows-restart",
+      "restart_timeout": "{{ user `restart_timeout` }}"
     }
   ]
 }
