@@ -4,6 +4,15 @@
   "description": "A Windows 10 Enterprise (Insider's Preview) Packer project that enables both WinRM and SSH",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
+  "homepage": "https://megabyte.space",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/megabyte-labs/packer/PROJECT_SLUG.git"
+  },
+  "bugs": {
+    "email": "help@megabyte.space",
+    "url": "https://gitlab.com/megabyte-labs/packer/PROJECT_SLUG/-/issues"
+  },
   "scripts": {
     "build": "trash build && packer build template.json",
     "build:hyperv": "trash build && packer build -only=hyperv-iso template.json",
@@ -47,6 +56,18 @@
     "standard-version": "^9.3.0",
     "trash-cli": "^4.0.0"
   },
+  "keywords": [
+    "PROJECT_SLUG",
+    "accelerated",
+    "compressed",
+    "desktop",
+    "optimized",
+    "packer",
+    "workstation"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
   "funding": [
     {
       "type": "opencollective",
@@ -84,5 +105,10 @@
     "test": "Validates the Packer configuration file (i.e. template.json) and performs some other linting",
     "update": "Runs .start.sh to automatically update meta files and documentation",
     "version": "Used by 'npm run prepare-release' to update the CHANGELOG and app version"
+  },
+  "standard-version": {
+    "scripts": {
+      "prerelease": "git add --all"
+    }
   }
 }
