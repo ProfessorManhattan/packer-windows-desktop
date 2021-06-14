@@ -34,7 +34,7 @@
     "test:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky \\) -prune -o -type f \\( -name \\*.custom.sh -o -name \\*.custom.sh.j2 \\) -print0 | xargs -0 -r -n1 shellcheck",
     "test:vagrant": "vagrant validate",
     "update": "bash .start.sh && cp ./.modules/packer/.start.sh .start.sh",
-    "version": "standard-version --no-verify"
+    "version": "standard-version -a --no-verify"
   },
   "config": {
     "commitizen": {
@@ -109,7 +109,9 @@
   },
   "standard-version": {
     "scripts": {
-      "prerelease": "git add --all"
+      "prebump": "jq -r '.variables.iso_version' template.json",
+      "prerelease": "git add --all",
+      "pretag": "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && if git show-ref --tags v$PACKAGE_VERSION --quiet; then git tag -d v$PACKAGE_VERSION; fi"
     }
   }
 }
