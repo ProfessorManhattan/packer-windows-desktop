@@ -1,6 +1,7 @@
 ---
 stages:
   - update
+  - fix
   - lint
 
 include:

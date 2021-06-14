@@ -7,11 +7,11 @@
   "homepage": "https://megabyte.space",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/megabyte-labs/packer/PROJECT_SLUG.git"
+    "url": "git+https://gitlab.com/megabyte-labs/packer/windows-desktop.git"
   },
   "bugs": {
     "email": "help@megabyte.space",
-    "url": "https://gitlab.com/megabyte-labs/packer/PROJECT_SLUG/-/issues"
+    "url": "https://gitlab.com/megabyte-labs/packer/windows-desktop/-/issues"
   },
   "scripts": {
     "build": "trash build && packer build template.json",
@@ -32,6 +32,7 @@
     "test:packer": "packer validate template.json",
     "test:prettier": "prettier \"{scripts/*.custom.sh,*.json}\" --list-different",
     "test:shellcheck": "shellcheck scripts/*.custom.sh",
+    "test:vagrant": "vagrant validate",
     "update": "bash .start.sh && cp ./.modules/packer/.start.sh .start.sh",
     "version": "standard-version --no-verify"
   },
@@ -57,12 +58,12 @@
     "trash-cli": "^4.0.0"
   },
   "keywords": [
-    "PROJECT_SLUG",
     "accelerated",
     "compressed",
     "desktop",
     "optimized",
     "packer",
+    "windows-desktop",
     "workstation"
   ],
   "engines": {

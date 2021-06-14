@@ -12,6 +12,7 @@ if [ "$container" != 'docker' ]; then
 fi
 
 export REPO_TYPE=packer
+git pull origin master --ff-only
 git submodule update --init --recursive
 if [ ! -f "./.modules/${REPO_TYPE}/update.sh" ]; then
   git submodule add -b master https://gitlab.com/megabyte-space/common/$REPO_TYPE.git ./.modules/$REPO_TYPE
