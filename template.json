@@ -10,7 +10,7 @@
     "description": "Windows 10 Enterprise (Insider's Preview)",
     "disk_size": "50000",
     "guest_additions_mode": "attach",
-    "guest_additions_url": "VBoxGuestAdditions.iso",
+    "guest_additions_url": "",
     "headless": "false",
     "hyperv_switch": "bento",
     "iso_checksum": "281281d1d01f9bfd18851b07d8e31254993c0a55c421124fb6d5cb20e4294132",
@@ -46,13 +46,13 @@
         "{{ template_dir }}/Autounattend.xml",
         "{{ template_dir }}/floppy/WindowsPowershell.lnk",
         "{{ template_dir }}/floppy/PinTo10.exe",
-        "{{ template_dir }}/scripts/fixnetwork.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.ps1",
-        "{{ template_dir }}/scripts/microsoft-updates.bat",
-        "{{ template_dir }}/scripts/win-updates.ps1",
-        "{{ template_dir }}/scripts/openssh.ps1"
+        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
+        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
+        "{{ template_dir }}/scripts/openssh.symlink.ps1"
       ],
       "guest_additions_mode": "none",
       "headless": "{{ user `headless` }}",
@@ -82,13 +82,13 @@
         "{{ template_dir }}/Autounattend.xml",
         "{{ template_dir }}/floppy/WindowsPowershell.lnk",
         "{{ template_dir }}/floppy/PinTo10.exe",
-        "{{ template_dir }}/scripts/fixnetwork.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.ps1",
-        "{{ template_dir }}/scripts/microsoft-updates.bat",
-        "{{ template_dir }}/scripts/win-updates.ps1",
-        "{{ template_dir }}/scripts/openssh.ps1"
+        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
+        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
+        "{{ template_dir }}/scripts/openssh.symlink.ps1"
       ],
       "guest_os_type": "win-10",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -128,13 +128,13 @@
         "{{ template_dir }}/Autounattend.xml",
         "{{ template_dir }}/floppy/WindowsPowershell.lnk",
         "{{ template_dir }}/floppy/PinTo10.exe",
-        "{{ template_dir }}/scripts/fixnetwork.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.ps1",
-        "{{ template_dir }}/scripts/microsoft-updates.bat",
-        "{{ template_dir }}/scripts/win-updates.ps1",
-        "{{ template_dir }}/scripts/openssh.ps1"
+        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
+        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
+        "{{ template_dir }}/scripts/openssh.symlink.ps1"
       ],
       "headless": "{{ user `headless` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -172,13 +172,13 @@
         "{{ template_dir }}/Autounattend.xml",
         "{{ template_dir }}/floppy/WindowsPowershell.lnk",
         "{{ template_dir }}/floppy/PinTo10.exe",
-        "{{ template_dir }}/scripts/fixnetwork.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.ps1",
-        "{{ template_dir }}/scripts/microsoft-updates.bat",
-        "{{ template_dir }}/scripts/win-updates.ps1",
-        "{{ template_dir }}/scripts/openssh.ps1"
+        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
+        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
+        "{{ template_dir }}/scripts/openssh.symlink.ps1"
       ],
       "guest_additions_mode": "attach",
       "guest_additions_url": "{{ user `guest_additions_url` }}",
@@ -219,13 +219,13 @@
         "{{ template_dir }}/Autounattend.xml",
         "{{ template_dir }}/floppy/WindowsPowershell.lnk",
         "{{ template_dir }}/floppy/PinTo10.exe",
-        "{{ template_dir }}/scripts/fixnetwork.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.ps1",
-        "{{ template_dir }}/scripts/microsoft-updates.bat",
-        "{{ template_dir }}/scripts/win-updates.ps1",
-        "{{ template_dir }}/scripts/openssh.ps1"
+        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
+        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
+        "{{ template_dir }}/scripts/openssh.symlink.ps1"
       ],
       "guest_os_type": "windows9-64",
       "headless": "{{ user `headless` }}",
@@ -278,8 +278,8 @@
     {
       "type": "powershell",
       "scripts": [
-        "{{ template_dir }}/scripts/vm-guest-tools.ps1",
-        "{{ template_dir }}/scripts/debloat-windows.ps1",
+        "{{ template_dir }}/scripts/vm-guest-tools.symlink.ps1",
+        "{{ template_dir }}/scripts/debloat-windows.symlink.ps1",
         "{{ template_dir }}/scripts/vagrant.custom.ps1"
       ]
     },
@@ -290,8 +290,8 @@
     {
       "type": "powershell",
       "scripts": [
-        "{{ template_dir }}/scripts/set-powerplan.ps1",
-        "{{ template_dir }}/scripts/disable-windows-defender.ps1",
+        "{{ template_dir }}/scripts/set-powerplan.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-windows-defender.symlink.ps1",
         "{{ template_dir }}/scripts/install-chocolatey.custom.ps1",
         "{{ template_dir }}/scripts/install-python.custom.ps1"
       ]
@@ -301,14 +301,14 @@
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "remote_path": "/tmp/script.bat",
       "scripts": [
-        "{{ template_dir }}/scripts/pin-powershell.bat",
-        "{{ template_dir }}/scripts/compile-dotnet-assemblies.bat",
-        "{{ template_dir }}/scripts/set-winrm-automatic.bat",
-        "{{ template_dir }}/scripts/enable-rdp.bat",
-        "{{ template_dir }}/scripts/uac-enable.bat",
-        "{{ template_dir }}/scripts/dis-updates.bat",
-        "{{ template_dir }}/scripts/disable-tasks.bat",
-        "{{ template_dir }}/scripts/compact.bat"
+        "{{ template_dir }}/scripts/pin-powershell.symlink.bat",
+        "{{ template_dir }}/scripts/compile-dotnet-assemblies.symlink.bat",
+        "{{ template_dir }}/scripts/set-winrm-automatic.symlink.bat",
+        "{{ template_dir }}/scripts/enable-rdp.symlink.bat",
+        "{{ template_dir }}/scripts/uac-enable.symlink.bat",
+        "{{ template_dir }}/scripts/dis-updates.symlink.bat",
+        "{{ template_dir }}/scripts/disable-tasks.symlink.bat",
+        "{{ template_dir }}/scripts/compact.symlink.bat"
       ]
     },
     {
