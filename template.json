@@ -1,4 +1,360 @@
 {
+  "builders": [
+    {
+      "boot_command": "{{ user `boot_command` }}",
+      "boot_wait": "{{ user `boot_wait` }}",
+      "communicator": "{{ user `communicator` }}",
+      "configuration_version": "8.0",
+      "cpus": "{{ user `cpus` }}",
+      "disk_size": "{{ user `disk_size` }}",
+      "floppy_files": [
+        "{{ template_dir }}/Autounattend.xml",
+        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
+        "{{ template_dir }}/floppy/PinTo10.exe",
+        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
+        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
+        "{{ template_dir }}/scripts/openssh.symlink.ps1"
+      ],
+      "guest_additions_mode": "none",
+      "headless": "{{ user `headless` }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "memory": "{{ user `memory` }}",
+      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-Hyper-V",
+      "shutdown_command": "{{ user `shutdown_command` }}",
+      "shutdown_timeout": "{{ user `shutdown_timeout` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_timeout": "{{ user `ssh_wait_timeout` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "switch_name": "{{ user `hyperv_switch` }}",
+      "type": "hyperv-iso",
+      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
+      "winrm_password": "{{ user `winrm_password` }}",
+      "winrm_timeout": "{{ user `winrm_timeout` }}",
+      "winrm_username": "{{ user `winrm_username` }}"
+    },
+    {
+      "boot_command": "{{ user `boot_command` }}",
+      "boot_wait": "{{ user `boot_wait` }}",
+      "communicator": "{{ user `communicator` }}",
+      "cpus": "{{ user `cpus` }}",
+      "disk_size": "{{ user `disk_size` }}",
+      "floppy_files": [
+        "{{ template_dir }}/Autounattend.xml",
+        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
+        "{{ template_dir }}/floppy/PinTo10.exe",
+        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
+        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
+        "{{ template_dir }}/scripts/openssh.symlink.ps1"
+      ],
+      "guest_os_type": "win-10",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "memory": "{{ user `memory` }}",
+      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-Parallels",
+      "parallels_tools_flavor": "win",
+      "parallels_tools_mode": "attach",
+      "prlctl": [
+        [
+          "set",
+          "{{ .Name }}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{ .Name }}",
+          "--cpus",
+          "{{ user `cpus` }}"
+        ],
+        [
+          "set",
+          "{{ .Name }}",
+          "--efi-boot",
+          "off"
+        ],
+        [
+          "set",
+          "{{ .Name }}",
+          "--memsize",
+          "{{ user `memory` }}"
+        ],
+        [
+          "set",
+          "{{ .Name }}",
+          "--startup-view",
+          "window"
+        ],
+        [
+          "set",
+          "{{ .Name }}",
+          "--winsystray-in-macmenu",
+          "off"
+        ]
+      ],
+      "prlctl_version_file": ".prlctl_version",
+      "shutdown_command": "{{ user `shutdown_command` }}",
+      "shutdown_timeout": "{{ user `shutdown_timeout` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_timeout": "{{ user `ssh_wait_timeout` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "type": "parallels-iso",
+      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
+      "winrm_password": "{{ user `winrm_password` }}",
+      "winrm_timeout": "{{ user `winrm_timeout` }}",
+      "winrm_username": "{{ user `winrm_username` }}"
+    },
+    {
+      "accelerator": "kvm",
+      "boot_command": "{{ user `boot_command` }}",
+      "boot_wait": "{{ user `boot_wait` }}",
+      "communicator": "{{ user `communicator` }}",
+      "cpus": "{{ user `cpus` }}",
+      "disk_size": "{{ user `disk_size` }}",
+      "floppy_files": [
+        "{{ template_dir }}/Autounattend.xml",
+        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
+        "{{ template_dir }}/floppy/PinTo10.exe",
+        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
+        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
+        "{{ template_dir }}/scripts/openssh.symlink.ps1"
+      ],
+      "headless": "{{ user `headless` }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "memory": "{{ user `memory` }}",
+      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-KVM",
+      "qemuargs": [
+        [
+          "-m",
+          "{{ user `memory` }}"
+        ],
+        [
+          "-smp",
+          "{{ user `cpus` }}"
+        ],
+        [
+          "-drive",
+          "file={{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-KVM/{{ .Name }},if=virtio,cache=writeback,discard=ignore,format=qcow2,index=1"
+        ],
+        [
+          "-drive",
+          "file={{ user `iso_url` }},media=cdrom,index=2"
+        ],
+        [
+          "-drive",
+          "file={{ template_dir }}/{{ user `virtio_file` }},media=cdrom,index=3"
+        ]
+      ],
+      "shutdown_command": "{{ user `shutdown_command` }}",
+      "shutdown_timeout": "{{ user `shutdown_timeout` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_timeout": "{{ user `ssh_wait_timeout` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "type": "qemu",
+      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
+      "winrm_password": "{{ user `winrm_password` }}",
+      "winrm_timeout": "{{ user `winrm_timeout` }}",
+      "winrm_username": "{{ user `winrm_username` }}"
+    },
+    {
+      "boot_command": "{{ user `boot_command` }}",
+      "boot_wait": "{{ user `boot_wait` }}",
+      "communicator": "{{ user `communicator` }}",
+      "cpus": "{{ user `cpus` }}",
+      "disk_size": "{{ user `disk_size` }}",
+      "floppy_files": [
+        "{{ template_dir }}/Autounattend.xml",
+        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
+        "{{ template_dir }}/floppy/PinTo10.exe",
+        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
+        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
+        "{{ template_dir }}/scripts/openssh.symlink.ps1"
+      ],
+      "guest_additions_mode": "attach",
+      "guest_additions_url": "{{ user `guest_additions_url` }}",
+      "guest_os_type": "Windows10_64",
+      "hard_drive_interface": "sata",
+      "headless": "{{ user `headless` }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "memory": "{{ user `memory` }}",
+      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VirtualBox",
+      "shutdown_command": "{{ user `shutdown_command` }}",
+      "shutdown_timeout": "{{ user `shutdown_timeout` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_timeout": "{{ user `ssh_wait_timeout` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{ .Name }}",
+          "--audio",
+          "none"
+        ],
+        [
+          "modifyvm",
+          "{{ .Name }}",
+          "--cpus",
+          "{{ user `cpus` }}"
+        ],
+        [
+          "modifyvm",
+          "{{ .Name }}",
+          "--memory",
+          "{{ user `memory` }}"
+        ],
+        [
+          "modifyvm",
+          "{{ .Name }}",
+          "--vram",
+          "128"
+        ],
+        [
+          "setextradata",
+          "{{ .Name }}",
+          "VBoxInternal/CPUM/IsaExts/CMPXCHG16B",
+          "1"
+        ]
+      ],
+      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
+      "winrm_password": "{{ user `winrm_password` }}",
+      "winrm_timeout": "{{ user `winrm_timeout` }}",
+      "winrm_username": "{{ user `winrm_username` }}"
+    },
+    {
+      "boot_command": "{{ user `boot_command` }}",
+      "boot_wait": "{{ user `boot_wait` }}",
+      "communicator": "{{ user `communicator` }}",
+      "cpus": "{{ user `cpus` }}",
+      "disk_adapter_type": "lsisas1068",
+      "disk_size": "{{ user `disk_size` }}",
+      "disk_type_id": "1",
+      "floppy_files": [
+        "{{ template_dir }}/Autounattend.xml",
+        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
+        "{{ template_dir }}/floppy/PinTo10.exe",
+        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
+        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
+        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
+        "{{ template_dir }}/scripts/openssh.symlink.ps1"
+      ],
+      "guest_os_type": "windows9-64",
+      "headless": "{{ user `headless` }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "memory": "{{ user `memory` }}",
+      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VMWare",
+      "shutdown_command": "{{ user `shutdown_command` }}",
+      "shutdown_timeout": "{{ user `shutdown_timeout` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_timeout": "{{ user `ssh_wait_timeout` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "tools_upload_flavor": "windows",
+      "type": "vmware-iso",
+      "version": 14,
+      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": 5900
+      },
+      "vmx_remove_ethernet_interfaces": true,
+      "vnc_port_max": 5980,
+      "vnc_port_min": 5900,
+      "winrm_password": "{{ user `winrm_password` }}",
+      "winrm_timeout": "{{ user `winrm_timeout` }}",
+      "winrm_username": "{{ user `winrm_username` }}"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "compression_level": "{{ user `compression_level` }}",
+        "output": "{{ user `build_directory` }}/{{ user `box_basename` }}.{{ .Provider }}.box",
+        "type": "vagrant",
+        "vagrantfile_template": "{{ template_dir }}/Vagrantfile"
+      },
+      {
+        "access_token": "{{ user `vagrantup_token` }}",
+        "box_tag": "{{ user `vagrantup_user` }}/{{ user `box_basename` }}",
+        "type": "vagrant-cloud",
+        "version": "{{ user `iso_version` }}",
+        "version_description": "{{ user `version_description` }}"
+      }
+    ]
+  ],
+  "provisioners": [
+    {
+      "command": "sleep {{ user `provisioning_delay` }}",
+      "type": "shell-local"
+    },
+    {
+      "scripts": [
+        "{{ template_dir }}/scripts/vm-guest-tools.symlink.ps1",
+        "{{ template_dir }}/scripts/debloat-windows.symlink.ps1",
+        "{{ template_dir }}/scripts/vagrant.custom.ps1"
+      ],
+      "type": "powershell"
+    },
+    {
+      "restart_timeout": "{{ user `restart_timeout` }}",
+      "type": "windows-restart"
+    },
+    {
+      "scripts": [
+        "{{ template_dir }}/scripts/set-powerplan.symlink.ps1",
+        "{{ template_dir }}/scripts/disable-windows-defender.symlink.ps1",
+        "{{ template_dir }}/scripts/install-chocolatey.custom.ps1",
+        "{{ template_dir }}/scripts/install-python.custom.ps1"
+      ],
+      "type": "powershell"
+    },
+    {
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "remote_path": "/tmp/script.bat",
+      "scripts": [
+        "{{ template_dir }}/scripts/pin-powershell.symlink.bat",
+        "{{ template_dir }}/scripts/compile-dotnet-assemblies.symlink.bat",
+        "{{ template_dir }}/scripts/set-winrm-automatic.symlink.bat",
+        "{{ template_dir }}/scripts/enable-rdp.symlink.bat",
+        "{{ template_dir }}/scripts/uac-enable.symlink.bat",
+        "{{ template_dir }}/scripts/dis-updates.symlink.bat",
+        "{{ template_dir }}/scripts/disable-tasks.symlink.bat",
+        "{{ template_dir }}/scripts/compact.symlink.bat"
+      ],
+      "type": "windows-shell"
+    },
+    {
+      "scripts": [
+        "{{ template_dir }}/scripts/cleanup.custom.ps1"
+      ],
+      "type": "powershell"
+    },
+    {
+      "restart_timeout": "{{ user `restart_timeout` }}",
+      "type": "windows-restart"
+    }
+  ],
   "variables": {
     "boot_command": "",
     "boot_wait": "20m",
@@ -31,292 +387,6 @@
     "winrm_password": "vagrant",
     "winrm_timeout": "12h",
     "winrm_username": "vagrant"
-  },
-  "builders": [
-    {
-      "type": "hyperv-iso",
-      "boot_command": "{{ user `boot_command` }}",
-      "boot_wait": "{{ user `boot_wait` }}",
-      "communicator": "{{ user `communicator` }}",
-      "configuration_version": "8.0",
-      "cpus": "{{ user `cpus` }}",
-      "disk_size": "{{ user `disk_size` }}",
-      "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
-        "{{ template_dir }}/floppy/PinTo10.exe",
-        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
-        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
-        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
-        "{{ template_dir }}/scripts/openssh.symlink.ps1"
-      ],
-      "guest_additions_mode": "none",
-      "headless": "{{ user `headless` }}",
-      "iso_checksum": "{{ user `iso_checksum` }}",
-      "iso_url": "{{ user `iso_url` }}",
-      "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-Hyper-V",
-      "shutdown_command": "{{ user `shutdown_command` }}",
-      "shutdown_timeout": "{{ user `shutdown_timeout` }}",
-      "ssh_password": "{{ user `ssh_password` }}",
-      "ssh_username": "{{ user `ssh_username` }}",
-      "ssh_wait_timeout": "{{ user `ssh_wait_timeout` }}",
-      "switch_name": "{{ user `hyperv_switch` }}",
-      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
-      "winrm_password": "{{ user `winrm_password` }}",
-      "winrm_timeout": "{{ user `winrm_timeout` }}",
-      "winrm_username": "{{ user `winrm_username` }}"
-    },
-    {
-      "type": "parallels-iso",
-      "boot_command": "{{ user `boot_command` }}",
-      "boot_wait": "{{ user `boot_wait` }}",
-      "communicator": "{{ user `communicator` }}",
-      "cpus": "{{ user `cpus` }}",
-      "disk_size": "{{ user `disk_size` }}",
-      "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
-        "{{ template_dir }}/floppy/PinTo10.exe",
-        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
-        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
-        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
-        "{{ template_dir }}/scripts/openssh.symlink.ps1"
-      ],
-      "guest_os_type": "win-10",
-      "iso_checksum": "{{ user `iso_checksum` }}",
-      "iso_url": "{{ user `iso_url` }}",
-      "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-Parallels",
-      "parallels_tools_flavor": "win",
-      "parallels_tools_mode": "attach",
-      "prlctl": [
-        ["set", "{{ .Name }}", "--adaptive-hypervisor", "on"],
-        ["set", "{{ .Name }}", "--cpus", "{{ user `cpus` }}"],
-        ["set", "{{ .Name }}", "--efi-boot", "off"],
-        ["set", "{{ .Name }}", "--memsize", "{{ user `memory` }}"],
-        ["set", "{{ .Name }}", "--startup-view", "window"],
-        ["set", "{{ .Name }}", "--winsystray-in-macmenu", "off"]
-      ],
-      "prlctl_version_file": ".prlctl_version",
-      "shutdown_command": "{{ user `shutdown_command` }}",
-      "shutdown_timeout": "{{ user `shutdown_timeout` }}",
-      "ssh_password": "{{ user `ssh_password` }}",
-      "ssh_username": "{{ user `ssh_username` }}",
-      "ssh_wait_timeout": "{{ user `ssh_wait_timeout` }}",
-      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
-      "winrm_password": "{{ user `winrm_password` }}",
-      "winrm_timeout": "{{ user `winrm_timeout` }}",
-      "winrm_username": "{{ user `winrm_username` }}"
-    },
-    {
-      "type": "qemu",
-      "accelerator": "kvm",
-      "boot_command": "{{ user `boot_command` }}",
-      "boot_wait": "{{ user `boot_wait` }}",
-      "communicator": "{{ user `communicator` }}",
-      "cpus": "{{ user `cpus` }}",
-      "disk_size": "{{ user `disk_size` }}",
-      "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
-        "{{ template_dir }}/floppy/PinTo10.exe",
-        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
-        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
-        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
-        "{{ template_dir }}/scripts/openssh.symlink.ps1"
-      ],
-      "headless": "{{ user `headless` }}",
-      "iso_checksum": "{{ user `iso_checksum` }}",
-      "iso_url": "{{ user `iso_url` }}",
-      "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-KVM",
-      "qemuargs": [
-        ["-m", "{{ user `memory` }}"],
-        ["-smp", "{{ user `cpus` }}"],
-        [
-          "-drive",
-          "file={{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-KVM/{{ .Name }},if=virtio,cache=writeback,discard=ignore,format=qcow2,index=1"
-        ],
-        ["-drive", "file={{ user `iso_url` }},media=cdrom,index=2"],
-        ["-drive", "file={{ template_dir }}/{{ user `virtio_file` }},media=cdrom,index=3"]
-      ],
-      "shutdown_command": "{{ user `shutdown_command` }}",
-      "shutdown_timeout": "{{ user `shutdown_timeout` }}",
-      "ssh_password": "{{ user `ssh_password` }}",
-      "ssh_username": "{{ user `ssh_username` }}",
-      "ssh_wait_timeout": "{{ user `ssh_wait_timeout` }}",
-      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
-      "winrm_password": "{{ user `winrm_password` }}",
-      "winrm_timeout": "{{ user `winrm_timeout` }}",
-      "winrm_username": "{{ user `winrm_username` }}"
-    },
-    {
-      "type": "virtualbox-iso",
-      "boot_command": "{{ user `boot_command` }}",
-      "boot_wait": "{{ user `boot_wait` }}",
-      "communicator": "{{ user `communicator` }}",
-      "cpus": "{{ user `cpus` }}",
-      "disk_size": "{{ user `disk_size` }}",
-      "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
-        "{{ template_dir }}/floppy/PinTo10.exe",
-        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
-        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
-        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
-        "{{ template_dir }}/scripts/openssh.symlink.ps1"
-      ],
-      "guest_additions_mode": "attach",
-      "guest_additions_url": "{{ user `guest_additions_url` }}",
-      "guest_os_type": "Windows10_64",
-      "hard_drive_interface": "sata",
-      "headless": "{{ user `headless` }}",
-      "iso_checksum": "{{ user `iso_checksum` }}",
-      "iso_url": "{{ user `iso_url` }}",
-      "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VirtualBox",
-      "shutdown_command": "{{ user `shutdown_command` }}",
-      "shutdown_timeout": "{{ user `shutdown_timeout` }}",
-      "ssh_password": "{{ user `ssh_password` }}",
-      "ssh_username": "{{ user `ssh_username` }}",
-      "ssh_wait_timeout": "{{ user `ssh_wait_timeout` }}",
-      "vboxmanage": [
-        ["modifyvm", "{{ .Name }}", "--audio", "none"],
-        ["modifyvm", "{{ .Name }}", "--cpus", "{{ user `cpus` }}"],
-        ["modifyvm", "{{ .Name }}", "--memory", "{{ user `memory` }}"],
-        ["modifyvm", "{{ .Name }}", "--vram", "128"],
-        ["setextradata", "{{ .Name }}", "VBoxInternal/CPUM/IsaExts/CMPXCHG16B", "1"]
-      ],
-      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
-      "winrm_password": "{{ user `winrm_password` }}",
-      "winrm_timeout": "{{ user `winrm_timeout` }}",
-      "winrm_username": "{{ user `winrm_username` }}"
-    },
-    {
-      "type": "vmware-iso",
-      "boot_command": "{{ user `boot_command` }}",
-      "boot_wait": "{{ user `boot_wait` }}",
-      "communicator": "{{ user `communicator` }}",
-      "cpus": "{{ user `cpus` }}",
-      "disk_adapter_type": "lsisas1068",
-      "disk_size": "{{ user `disk_size` }}",
-      "disk_type_id": "1",
-      "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
-        "{{ template_dir }}/floppy/WindowsPowershell.lnk",
-        "{{ template_dir }}/floppy/PinTo10.exe",
-        "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
-        "{{ template_dir }}/scripts/disable-screensaver.symlink.ps1",
-        "{{ template_dir }}/scripts/disable-winrm.symlink.ps1",
-        "{{ template_dir }}/scripts/enable-winrm.symlink.ps1",
-        "{{ template_dir }}/scripts/microsoft-updates.symlink.bat",
-        "{{ template_dir }}/scripts/win-updates.symlink.ps1",
-        "{{ template_dir }}/scripts/openssh.symlink.ps1"
-      ],
-      "guest_os_type": "windows9-64",
-      "headless": "{{ user `headless` }}",
-      "iso_checksum": "{{ user `iso_checksum` }}",
-      "iso_url": "{{ user `iso_url` }}",
-      "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VMWare",
-      "shutdown_command": "{{ user `shutdown_command` }}",
-      "shutdown_timeout": "{{ user `shutdown_timeout` }}",
-      "ssh_password": "{{ user `ssh_password` }}",
-      "ssh_username": "{{ user `ssh_username` }}",
-      "ssh_wait_timeout": "{{ user `ssh_wait_timeout` }}",
-      "tools_upload_flavor": "windows",
-      "version": 14,
-      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
-      "vmx_data": {
-        "RemoteDisplay.vnc.enabled": "false",
-        "RemoteDisplay.vnc.port": 5900
-      },
-      "vmx_remove_ethernet_interfaces": true,
-      "vnc_port_max": 5980,
-      "vnc_port_min": 5900,
-      "winrm_password": "{{ user `winrm_password` }}",
-      "winrm_timeout": "{{ user `winrm_timeout` }}",
-      "winrm_username": "{{ user `winrm_username` }}"
-    }
-  ],
-  "post-processors": [
-    [
-      {
-        "type": "vagrant",
-        "compression_level": "{{ user `compression_level` }}",
-        "output": "{{ user `build_directory` }}/{{ user `box_basename` }}.{{ .Provider }}.box",
-        "vagrantfile_template": "{{ template_dir }}/Vagrantfile"
-      },
-      {
-        "type": "vagrant-cloud",
-        "access_token": "{{ user `vagrantup_token` }}",
-        "box_tag": "{{ user `vagrantup_user` }}/{{ user `box_basename` }}",
-        "version_description": "{{ user `version_description` }}",
-        "version": "{{ user `iso_version` }}"
-      }
-    ]
-  ],
-  "provisioners": [
-    {
-      "type": "shell-local",
-      "command": "sleep {{ user `provisioning_delay` }}"
-    },
-    {
-      "type": "powershell",
-      "scripts": [
-        "{{ template_dir }}/scripts/vm-guest-tools.symlink.ps1",
-        "{{ template_dir }}/scripts/debloat-windows.symlink.ps1",
-        "{{ template_dir }}/scripts/vagrant.custom.ps1"
-      ]
-    },
-    {
-      "type": "windows-restart",
-      "restart_timeout": "{{ user `restart_timeout` }}"
-    },
-    {
-      "type": "powershell",
-      "scripts": [
-        "{{ template_dir }}/scripts/set-powerplan.symlink.ps1",
-        "{{ template_dir }}/scripts/disable-windows-defender.symlink.ps1",
-        "{{ template_dir }}/scripts/install-chocolatey.custom.ps1",
-        "{{ template_dir }}/scripts/install-python.custom.ps1"
-      ]
-    },
-    {
-      "type": "windows-shell",
-      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
-      "remote_path": "/tmp/script.bat",
-      "scripts": [
-        "{{ template_dir }}/scripts/pin-powershell.symlink.bat",
-        "{{ template_dir }}/scripts/compile-dotnet-assemblies.symlink.bat",
-        "{{ template_dir }}/scripts/set-winrm-automatic.symlink.bat",
-        "{{ template_dir }}/scripts/enable-rdp.symlink.bat",
-        "{{ template_dir }}/scripts/uac-enable.symlink.bat",
-        "{{ template_dir }}/scripts/dis-updates.symlink.bat",
-        "{{ template_dir }}/scripts/disable-tasks.symlink.bat",
-        "{{ template_dir }}/scripts/compact.symlink.bat"
-      ]
-    },
-    {
-      "type": "powershell",
-      "scripts": ["{{ template_dir }}/scripts/cleanup.custom.ps1"]
-    },
-    {
-      "type": "windows-restart",
-      "restart_timeout": "{{ user `restart_timeout` }}"
-    }
-  ]
+  }
 }
+
