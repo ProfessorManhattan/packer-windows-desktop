@@ -63,42 +63,12 @@
       "parallels_tools_flavor": "win",
       "parallels_tools_mode": "attach",
       "prlctl": [
-        [
-          "set",
-          "{{ .Name }}",
-          "--adaptive-hypervisor",
-          "on"
-        ],
-        [
-          "set",
-          "{{ .Name }}",
-          "--cpus",
-          "{{ user `cpus` }}"
-        ],
-        [
-          "set",
-          "{{ .Name }}",
-          "--efi-boot",
-          "off"
-        ],
-        [
-          "set",
-          "{{ .Name }}",
-          "--memsize",
-          "{{ user `memory` }}"
-        ],
-        [
-          "set",
-          "{{ .Name }}",
-          "--startup-view",
-          "window"
-        ],
-        [
-          "set",
-          "{{ .Name }}",
-          "--winsystray-in-macmenu",
-          "off"
-        ]
+        ["set", "{{ .Name }}", "--adaptive-hypervisor", "on"],
+        ["set", "{{ .Name }}", "--cpus", "{{ user `cpus` }}"],
+        ["set", "{{ .Name }}", "--efi-boot", "off"],
+        ["set", "{{ .Name }}", "--memsize", "{{ user `memory` }}"],
+        ["set", "{{ .Name }}", "--startup-view", "window"],
+        ["set", "{{ .Name }}", "--winsystray-in-macmenu", "off"]
       ],
       "prlctl_version_file": ".prlctl_version",
       "shutdown_command": "{{ user `shutdown_command` }}",
@@ -137,26 +107,14 @@
       "memory": "{{ user `memory` }}",
       "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-KVM",
       "qemuargs": [
-        [
-          "-m",
-          "{{ user `memory` }}"
-        ],
-        [
-          "-smp",
-          "{{ user `cpus` }}"
-        ],
+        ["-m", "{{ user `memory` }}"],
+        ["-smp", "{{ user `cpus` }}"],
         [
           "-drive",
           "file={{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-KVM/{{ .Name }},if=virtio,cache=writeback,discard=ignore,format=qcow2,index=1"
         ],
-        [
-          "-drive",
-          "file={{ user `iso_url` }},media=cdrom,index=2"
-        ],
-        [
-          "-drive",
-          "file={{ template_dir }}/{{ user `virtio_file` }},media=cdrom,index=3"
-        ]
+        ["-drive", "file={{ user `iso_url` }},media=cdrom,index=2"],
+        ["-drive", "file={{ template_dir }}/{{ user `virtio_file` }},media=cdrom,index=3"]
       ],
       "shutdown_command": "{{ user `shutdown_command` }}",
       "shutdown_timeout": "{{ user `shutdown_timeout` }}",
@@ -203,36 +161,11 @@
       "ssh_username": "{{ user `ssh_username` }}",
       "type": "virtualbox-iso",
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{ .Name }}",
-          "--audio",
-          "none"
-        ],
-        [
-          "modifyvm",
-          "{{ .Name }}",
-          "--cpus",
-          "{{ user `cpus` }}"
-        ],
-        [
-          "modifyvm",
-          "{{ .Name }}",
-          "--memory",
-          "{{ user `memory` }}"
-        ],
-        [
-          "modifyvm",
-          "{{ .Name }}",
-          "--vram",
-          "128"
-        ],
-        [
-          "setextradata",
-          "{{ .Name }}",
-          "VBoxInternal/CPUM/IsaExts/CMPXCHG16B",
-          "1"
-        ]
+        ["modifyvm", "{{ .Name }}", "--audio", "none"],
+        ["modifyvm", "{{ .Name }}", "--cpus", "{{ user `cpus` }}"],
+        ["modifyvm", "{{ .Name }}", "--memory", "{{ user `memory` }}"],
+        ["modifyvm", "{{ .Name }}", "--vram", "128"],
+        ["setextradata", "{{ .Name }}", "VBoxInternal/CPUM/IsaExts/CMPXCHG16B", "1"]
       ],
       "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
       "winrm_password": "{{ user `winrm_password` }}",
@@ -345,9 +278,7 @@
       "type": "windows-shell"
     },
     {
-      "scripts": [
-        "{{ template_dir }}/scripts/cleanup.custom.ps1"
-      ],
+      "scripts": ["{{ template_dir }}/scripts/cleanup.custom.ps1"],
       "type": "powershell"
     },
     {
@@ -389,4 +320,3 @@
     "winrm_username": "vagrant"
   }
 }
-
