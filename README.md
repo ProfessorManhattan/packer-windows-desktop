@@ -69,20 +69,21 @@
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 
-<a href="#table-of-contents)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#table-of-contents)
 
 ## ➤ Table of Contents
 
-- [➤ Overview](#-overview)
-  - [Supported Virtualization Platforms](#supported-virtualization-platforms)
-- [➤ Requirements](#-requirements)
-- [➤ Quick Start](#-quick-start)
-- [➤ Creating Your Own Box](#-creating-your-own-box)
-- [➤ Updating Your Box](#-updating-your-box)
-- [➤ Contributing](#-contributing)
-- [➤ License](#-license)
+* [➤ Overview](#-overview)
+	* [Supported Virtualization Platforms](#supported-virtualization-platforms)
+* [➤ Requirements](#-requirements)
+* [➤ Quick Start](#-quick-start)
+* [➤ Creating Your Own Box](#-creating-your-own-box)
+* [➤ Updating Your Box](#-updating-your-box)
+* [➤ Contributing](#-contributing)
+* [➤ License](#-license)
 
-<a href="#overview)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#overview)
 
 ## ➤ Overview
 
@@ -104,7 +105,8 @@ This project supports creating boxes for the following virtualization platforms:
 - [VirtualBox](https://gitlab.com/megabyte-labs/ansible-roles/virtualbox) <!-- SUPPORTED_OS_VIRTUALBOX -->
 - [VMWare](https://gitlab.com/megabyte-labs/ansible-roles/vmware) <!-- SUPPORTED_OS_VMWARE -->
 
-<a href="#requirements)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#requirements)
 
 ## ➤ Requirements
 
@@ -112,7 +114,8 @@ This project supports creating boxes for the following virtualization platforms:
 - [Packer](https://gitlab.com/megabyte-labs/ansible-roles/packer)
 - [Vagrant](https://gitlab.com/megabyte-labs/ansible-roles/vagrant)
 
-<a href="#quick-start)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#quick-start)
 
 ## ➤ Quick Start
 
@@ -124,7 +127,8 @@ vagrant up
 
 The default username and password are both _vagrant_.
 
-<a href="#creating-your-own-box)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#creating-your-own-box)
 
 ## ➤ Creating Your Own Box
 
@@ -145,7 +149,8 @@ The example above will build a VirtualBox Windows 10 Enterprise (Insider's Previ
 
 If you do not want your box to be automatically uploaded to VagrantUp after you build it with Packer then you will need to remove the `"vagrant-cloud"` section under `"post-processors"`. The section is wrapped in a nested array. If you are removing the `vagrant-cloud` post-processor, then the section no longer has to be placed in a nested array.
 
-<a href="#updating-your-box)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#updating-your-box)
 
 ## ➤ Updating Your Box
 
@@ -159,7 +164,8 @@ latestos variables.latestos_tag # Options include arch, centos, debian, fedora, 
 packer build -only=virtualbox-iso template.json
 ```
 
-<a href="#contributing)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#contributing)
 
 ## ➤ Contributing
 
@@ -183,8 +189,10 @@ I create open source projects out of love. Although I have a job, shelter, and a
 
 </details>
 
-<a href="#license)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#license)
 
 ## ➤ License
 
 Copyright © 2021 [Megabyte LLC](https://megabyte.space). This project is [MIT](https://gitlab.com/megabyte-labs/packer/Windows-Desktop/-/raw/master/LICENSE) licensed.
+
