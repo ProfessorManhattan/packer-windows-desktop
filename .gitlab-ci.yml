@@ -1,13 +1,3 @@
 ---
-stages:
-  - update
-  - fix
-  - lint
-
 include:
-  - remote: https://gitlab.com/megabyte-labs/ci/gitlab-ci-templates/-/raw/master/packer-validate.gitlab-ci.yml
-  - remote: https://gitlab.com/megabyte-labs/ci/gitlab-ci-templates/-/raw/master/prettier.gitlab-ci.yml
-  - remote: https://gitlab.com/megabyte-labs/ci/gitlab-ci-templates/-/raw/master/prettier-fix.gitlab-ci.yml
-  - remote: https://gitlab.com/megabyte-labs/ci/gitlab-ci-templates/-/raw/master/shellcheck.gitlab-ci.yml
-  - remote: https://gitlab.com/megabyte-labs/ci/gitlab-ci-templates/-/raw/master/update.gitlab-ci.yml
-  # - remote: https://gitlab.com/megabyte-labs/ci/gitlab-ci-templates/-/raw/master/vagrant-validate.gitlab-ci.yml
+  - remote: https://gitlab.com/megabyte-labs/gitlab-ci/-/raw/master/common.gitlab-ci.yml
