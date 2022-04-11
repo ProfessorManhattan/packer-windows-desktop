@@ -8,7 +8,7 @@
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
+        "{{ template_dir }}/floppy/Autounattend.xml",
         "{{ template_dir }}/floppy/WindowsPowershell.lnk",
         "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
@@ -44,7 +44,7 @@
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
+        "{{ template_dir }}/floppy/Autounattend.xml",
         "{{ template_dir }}/floppy/WindowsPowershell.lnk",
         "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
@@ -90,7 +90,7 @@
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
+        "{{ template_dir }}/floppy/Autounattend.xml",
         "{{ template_dir }}/floppy/WindowsPowershell.lnk",
         "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
@@ -134,7 +134,7 @@
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
+        "{{ template_dir }}/floppy/Autounattend.xml",
         "{{ template_dir }}/floppy/WindowsPowershell.lnk",
         "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",
@@ -181,7 +181,7 @@
       "disk_size": "{{ user `disk_size` }}",
       "disk_type_id": "1",
       "floppy_files": [
-        "{{ template_dir }}/Autounattend.xml",
+        "{{ template_dir }}/floppy/Autounattend.xml",
         "{{ template_dir }}/floppy/WindowsPowershell.lnk",
         "{{ template_dir }}/floppy/PinTo10.exe",
         "{{ template_dir }}/scripts/fixnetwork.symlink.ps1",

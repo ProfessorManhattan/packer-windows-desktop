@@ -14,29 +14,6 @@
     "url": "https://gitlab.com/megabyte-labs/packer/windows-desktop/-/issues"
   },
   "scripts": {
-    "build": "trash build && packer build template.json",
-    "build:hyperv": "trash build && packer build -only=hyperv-iso template.json",
-    "build:kvm": "trash build && packer build -only=qemu template.json",
-    "build:parallels": "trash build && packer build -only=parallels-iso template.json",
-    "build:virtualbox": "trash build && packer build -only=virtualbox-iso template.json",
-    "build:vmware": "trash build && packer build -only=vmware-iso template.json",
-    "commit": "git-cz",
-    "fix": "run-s fix:*",
-    "fix:packer": "for TEMPLATE in *template.json; do packer fix $TEMPLATE > __$TEMPLATE; mv __$TEMPLATE $TEMPLATE; done",
-    "fix:prettier": "prettier --write .",
-    "fix:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky \\) -prune -o -type f \\( -name \\*.custom.sh -o -name \\*.custom.sh.j2 \\) -print0 | xargs -0 shellcheck -f diff | git apply",
-    "info": "npm-scripts-info",
-    "postinstall": "husky install && run-s update",
-    "launch": "vagrant up",
-    "misc:markdown-links": "find . -type d \\( -name .cache -o -name .git -o -name .github -o -name .gitlab -o -name .modules  -o -name node_modules \\) -prune -o -type f \\( -name \\*.md \\) -print0 | xargs -0 -r -n1 markdown-link-check",
-    "prepare-release": "run-s update test version",
-    "test": "run-s test:*",
-    "test:packer": "for TEMPLATE in *template.json; do packer validate $TEMPLATE; done",
-    "test:prettier": "prettier --list-different .",
-    "test:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky \\) -prune -o -type f \\( -name \\*.custom.sh -o -name \\*.custom.sh.j2 \\) -print0 | xargs -0 -r -n1 shellcheck",
-    "test:vagrant": "vagrant validate",
-    "update": "bash .start.sh && cp ./.modules/packer/.start.sh .start.sh",
-    "version": "standard-version -a --no-verify"
   },
   "config": {
     "commitizen": {
@@ -44,21 +21,6 @@
     }
   },
   "devDependencies": {
-    "@megabytelabs/prettier-config": "^1.2.893",
-    "consola": "^2.15.3",
-    "cspell": "^5.4.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "husky": "^5.2.0",
-    "lint-staged": "^11.0.0",
-    "markdown-link-check": "^3.8.7",
-    "npm-run-all": "^4.1.5",
-    "npm-scripts-info": "^0.3.9",
-    "prettier": "^2.1.1",
-    "prettier-package-json": "^2.5.0",
-    "prettier-plugin-sh": "^0.6.1",
-    "shellcheck": "^1.0.0",
-    "standard-version": "^9.3.0",
-    "trash-cli": "^4.0.0"
   },
   "keywords": [
     "accelerated",
@@ -92,6 +54,24 @@
     "package.json": [
       "prettier-package-json --write"
     ]
+  },
+  "blueprint": {
+    "description": "An automated Windows 11 Desktop Packer project that sets up SSH, WinRM, and virtualization additions",
+  "description_template": "Windows MAJOR_VERSION Enterprise (Insider's Preview)",
+  "description_template_package": "A Windows MAJOR_VERSION Enterprise (Insider's Preview) Packer project that enables both WinRM and SSH",
+  "hostname": "vagrant-windows",
+  "group": "packer",
+  "name": "Windows 11 Desktop",
+  "repository": {
+    "github": "https://github.com/megabyte-labs/packer-windows-desktop",
+    "gitlab": "https://gitlab.com/megabyte-labs/packer/windows-desktop"
+  },
+  "subgroup": "desktop",
+  "title": "Windows 11 Desktop Template for Packer",
+  "overview": "This project houses configurations that can be used to build performant [Windows 11](https://www.microsoft.com/en-us/windows/windows-11) desktop images. It downloads an Insider's Preview image as a base, uses Packer to automate the build process, and then sets the image up using some [Windows Bento scripts](https://github.com/chef/bento/tree/main/packer_templates/windows) which take care of optimizing the image for your system (i.e. setting up SSH with the Vagrant default public key, setting up GuestAdditions for VirtualBox, etc.). This project is intended to be used to create desktop images that you would launch from your main desktop using a GUI. If you are looking for headless images, you should either use [Bento's server images](https://app.vagrantup.com/bento). You might also have some luck browsing through our [Packer projects](https://gitlab.com/megabyte-labs/packer).",
+  "slug": "windows-desktop",
+  "vagrant_tag": "windows",
+  "version_description": "Windows 11 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM, SSH, Python 3, and Chocolatey. Perfect for Ansible testing. Bloat removed. See https://github.com/megabyte-labs/packer-windows-desktop for more details."
   },
   "prettier": "@megabytelabs/prettier-config",
   "scripts-info": {
