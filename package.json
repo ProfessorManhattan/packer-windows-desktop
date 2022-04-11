@@ -95,7 +95,10 @@
     "subgroup": "desktop",
     "title": "Windows 11 Desktop Template for Packer",
     "vagrant_tag": "windows",
-    "version_description": "Windows 11 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM, SSH, Python 3, and Chocolatey. Perfect for Ansible testing. Bloat removed. See https://github.com/megabyte-labs/packer-windows-desktop for more details."
+    "version_description": "Windows 11 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM, SSH, Python 3, and Chocolatey. Perfect for Ansible testing. Bloat removed. See https://github.com/megabyte-labs/packer-windows-desktop for more details.",
+    "github_id": "R_kgDOHKGWig",
+    "gitlab_project_id": "24081313",
+    "gitlab_group_id": "10839950"
   },
   "changelog": {
     "displayTypes": [
