@@ -1,0 +1,10 @@
+{{ load:.config/docs/common/readme/header.md }}
+{{ load:.config/docs/readme-cli/subheader.md }}
+{{ load:.config/docs/readme-cli/quick-description.md }}
+{{ template:toc }}
+{{ load:.config/docs/readme/overview.md }}
+{{ load:docs/partials/features.md }}
+{{ load:.config/docs/readme-cli/installation.md }}
+{{ load:.config/docs/readme-cli/usage.md }}
+{{ load:.config/docs/common/readme/contribute.md }}
+{{ load:.config/docs/common/readme/license.md }}
