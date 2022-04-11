@@ -24,42 +24,8 @@
   "email": {
     "help": "help@megabyte.space"
   },
-  "emoji_beginnings": [
-    "🚀 ",
-    "🔥👉 ",
-    "👉 ",
-    "😉 ",
-    "🆓 ",
-    "🐴 ",
-    "👀 ",
-    "🎉 ",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    ""
-  ],
-  "emoji_endings": [
-    " 🚀",
-    " 🔥🔥🔥",
-    " 👏",
-    " 😉",
-    " 🐙",
-    " 🐴",
-    " 👀",
-    " 🎟",
-    " 🎉🎉",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    ""
-  ],
+  "emoji_beginnings": ["🚀 ", "🔥👉 ", "👉 ", "😉 ", "🆓 ", "🐴 ", "👀 ", "🎉 ", "", "", "", "", "", "", "", ""],
+  "emoji_endings": [" 🚀", " 🔥🔥🔥", " 👏", " 😉", " 🐙", " 🐴", " 👀", " 🎟", " 🎉🎉", "", "", "", "", "", "", ""],
   "github_prefix": "packer-",
   "gitlab_pipelines": [
     {
@@ -134,40 +100,13 @@
   "gomodProxy": true,
   "group": "common",
   "groups": {
-    "angular": [
-      "app",
-      "website"
-    ],
-    "ansible": [
-      "playbook",
-      "role"
-    ],
-    "docker": [
-      "ansible-molecule",
-      "app",
-      "ci-pipeline",
-      "codeclimate",
-      "software"
-    ],
-    "go": [
-      "cli",
-      "library"
-    ],
-    "npm": [
-      "app",
-      "cli",
-      "config",
-      "library",
-      "plugin"
-    ],
-    "packer": [
-      "desktop",
-      "server"
-    ],
-    "python": [
-      "cli",
-      "library"
-    ]
+    "angular": ["app", "website"],
+    "ansible": ["playbook", "role"],
+    "docker": ["ansible-molecule", "app", "ci-pipeline", "codeclimate", "software"],
+    "go": ["cli", "library"],
+    "npm": ["app", "cli", "config", "library", "plugin"],
+    "packer": ["desktop", "server"],
+    "python": ["cli", "library"]
   },
   "homebrew": {
     "folder": "Formula",

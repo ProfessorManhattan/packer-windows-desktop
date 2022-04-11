@@ -1,42 +1,41 @@
 {
+  "private": false,
+  "name": "@mblabs/windows-desktop",
+  "version": "1.0.0",
+  "description": "An automated Windows 11 Desktop Packer project that sets up SSH, WinRM, and virtualization additions",
+  "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
-  "blueprint": {
-    "description": "An automated Windows 11 Desktop Packer project that sets up SSH, WinRM, and virtualization additions",
-    "description_template": "Windows MAJOR_VERSION Enterprise (Insider's Preview)",
-    "description_template_package": "A Windows MAJOR_VERSION Enterprise (Insider's Preview) Packer project that enables both WinRM and SSH",
-    "group": "packer",
-    "hostname": "vagrant-windows",
-    "name": "Windows 11 Desktop",
-    "overview": "This project houses configurations that can be used to build performant [Windows 11](https://www.microsoft.com/en-us/windows/windows-11) desktop images. It downloads an Insider's Preview image as a base, uses Packer to automate the build process, and then sets the image up using some [Windows Bento scripts](https://github.com/chef/bento/tree/main/packer_templates/windows) which take care of optimizing the image for your system (i.e. setting up SSH with the Vagrant default public key, setting up GuestAdditions for VirtualBox, etc.). This project is intended to be used to create desktop images that you would launch from your main desktop using a GUI. If you are looking for headless images, you should either use [Bento's server images](https://app.vagrantup.com/bento). You might also have some luck browsing through our [Packer projects](https://gitlab.com/megabyte-labs/packer).",
-    "repository": {
-      "github": "https://github.com/megabyte-labs/packer-windows-desktop",
-      "gitlab": "https://gitlab.com/megabyte-labs/packer/windows-desktop"
-    },
-    "slug": "windows-desktop",
-    "subgroup": "desktop",
-    "title": "Windows 11 Desktop Template for Packer",
-    "vagrant_tag": "windows",
-    "version_description": "Windows 11 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM, SSH, Python 3, and Chocolatey. Perfect for Ansible testing. Bloat removed. See https://github.com/megabyte-labs/packer-windows-desktop for more details."
+  "homepage": "https://megabyte.space",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/megabyte-labs/packer-windows-desktop.git"
   },
   "bugs": {
     "email": "help@megabyte.space",
     "url": "https://gitlab.com/megabyte-labs/packer/windows-desktop/-/issues"
   },
-  "changelog": {
-    "displayTypes": [
-      "feat",
-      "fix",
-      "perf",
-      "refactor",
-      "revert"
-    ],
-    "showAuthor": true
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ],
-    "helpUrl": "https://megabyte.space/docs/contributing/commits"
+  "type": "module",
+  "scripts": {
+    "build": "task packer:build",
+    "build:hyperv": "task packer:build:hyperv",
+    "build:kvm": "task packer:build:kvm",
+    "build:parallels": "task packer:build:parallels",
+    "build:virtualbox": "task packer:build:virtualbox",
+    "build:vmware": "task packer:build:vmware",
+    "commit": "bash start.sh && task commit",
+    "fix": "bash start.sh && task fix",
+    "help": "bash start.sh && task --menu",
+    "lint": "bash start.sh && task lint",
+    "preload": "bash start.sh && task preload",
+    "prepare": "bash start.sh && (test -f Taskfile.yml && task npm:prepare) || true",
+    "release": "bash start.sh && task publish:semantic-release",
+    "repair": "bash <(curl -sS https://install.doctor/repair)",
+    "start": "test -z $SKIP_NPM_START && bash start.sh || true",
+    "test": "task lint:packer",
+    "unpack": "bash start.sh && task npm:bundle:unpack",
+    "update": "bash start.sh && task update",
+    "vagrant": "task vagrant:up",
+    "vscode": "bash start.sh && task vscode"
   },
   "config": {
     "commitizen": {
@@ -44,7 +43,7 @@
     }
   },
   "dependencies": {},
-  "description": "An automated Windows 11 Desktop Packer project that sets up SSH, WinRM, and virtualization additions",
+  "optionalDependencies": {},
   "devDependencies": {
     "@commitlint/config-conventional": "latest",
     "eslint-config-strict-mode": "latest",
@@ -53,30 +52,6 @@
     "prettier-config-sexy-mode": "latest",
     "semantic-release-config": "latest",
     "typescript": "^4.5.5"
-  },
-  "engines": {
-    "node": ">=14.18.0"
-  },
-  "eslintConfig": {
-    "extends": "eslint-config-strict-mode",
-    "rules": {
-      "json-schema-validator/no-invalid": "off"
-    }
-  },
-  "funding": [
-    {
-      "type": "opencollective",
-      "url": "https://opencollective.com/megabytelabs"
-    },
-    {
-      "type": "patreon",
-      "url": "https://www.patreon.com/ProfessorManhattan"
-    }
-  ],
-  "homepage": "https://megabyte.space",
-  "jscpd": {
-    "gitignore": true,
-    "threshold": 0.1
   },
   "keywords": [
     "accelerated",
@@ -96,7 +71,68 @@
     "windows-desktop",
     "workstation"
   ],
-  "license": "MIT",
+  "engines": {
+    "node": ">=14.18.0"
+  },
+  "publishConfig": {
+    "@gitlab:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "tag": "edge"
+  },
+  "blueprint": {
+    "description": "An automated Windows 11 Desktop Packer project that sets up SSH, WinRM, and virtualization additions",
+    "description_template": "Windows MAJOR_VERSION Enterprise (Insider's Preview)",
+    "group": "packer",
+    "hostname": "vagrant-windows",
+    "name": "Windows 11 Desktop",
+    "overview": "This project houses configurations that can be used to build performant [Windows 11](https://www.microsoft.com/en-us/windows/windows-11) desktop images. It downloads an Insider's Preview image as a base, uses Packer to automate the build process, and then sets the image up using some [Windows Bento scripts](https://github.com/chef/bento/tree/main/packer_templates/windows) which take care of optimizing the image for your system (i.e. setting up SSH with the Vagrant default public key, setting up GuestAdditions for VirtualBox, etc.). This project is intended to be used to create desktop images that you would launch from your main desktop using a GUI. If you are looking for headless images, you should either use [Bento's server images](https://app.vagrantup.com/bento). You might also have some luck browsing through our [Packer projects](https://gitlab.com/megabyte-labs/packer).",
+    "repository": {
+      "github": "https://github.com/megabyte-labs/packer-windows-desktop",
+      "gitlab": "https://gitlab.com/megabyte-labs/packer/windows-desktop"
+    },
+    "slug": "windows-desktop",
+    "subgroup": "desktop",
+    "title": "Windows 11 Desktop Template for Packer",
+    "vagrant_tag": "windows",
+    "version_description": "Windows 11 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM, SSH, Python 3, and Chocolatey. Perfect for Ansible testing. Bloat removed. See https://github.com/megabyte-labs/packer-windows-desktop for more details."
+  },
+  "changelog": {
+    "displayTypes": [
+      "feat",
+      "fix",
+      "perf",
+      "refactor",
+      "revert"
+    ],
+    "showAuthor": true
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "helpUrl": "https://megabyte.space/docs/contributing/commits"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-strict-mode",
+    "rules": {
+      "json-schema-validator/no-invalid": "off"
+    }
+  },
+  "funding": [
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/megabytelabs"
+    },
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/ProfessorManhattan"
+    }
+  ],
+  "jscpd": {
+    "gitignore": true,
+    "threshold": 0.1
+  },
   "lint-staged": {
     "(Brewfile|composer.lock|Gemfile|Gopkg.lock|Pipfile.lock)": [
       "task fix:prettier --"
@@ -169,7 +205,6 @@
       "task image:compress --"
     ]
   },
-  "name": "@mblabs/windows-desktop",
   "ntl": {
     "descriptions": {
       "build": "Builds the project using the build command specified under scripts in package.json",
@@ -188,7 +223,6 @@
       "vagrant": "Opens an interactive dialog that lets you choose between virtualization platforms to use with the \"vagrant up\" command"
     }
   },
-  "optionalDependencies": {},
   "pnpm": {
     "allowedVersions": {
       "@typescript-eslint/eslint-plugin": "5",
@@ -208,13 +242,6 @@
     }
   },
   "prettier": "prettier-config-sexy-mode",
-  "private": false,
-  "publishConfig": {
-    "@gitlab:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
-    "access": "public",
-    "registry": "https://registry.npmjs.org/",
-    "tag": "edge"
-  },
   "release": {
     "branches": [
       "main",
@@ -226,33 +253,5 @@
       }
     ],
     "extends": "semantic-release-config"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/megabyte-labs/packer-windows-desktop.git"
-  },
-  "scripts": {
-    "build": "task packer:build",
-    "build:hyperv": "task packer:build:hyperv",
-    "build:kvm": "task packer:build:kvm",
-    "build:parallels": "task packer:build:parallels",
-    "build:virtualbox": "task packer:build:virtualbox",
-    "build:vmware": "task packer:build:vmware",
-    "commit": "bash start.sh && task commit",
-    "fix": "bash start.sh && task fix",
-    "help": "bash start.sh && task --menu",
-    "lint": "bash start.sh && task lint",
-    "preload": "bash start.sh && task preload",
-    "prepare": "bash start.sh && (test -f Taskfile.yml && task npm:prepare) || true",
-    "release": "bash start.sh && task publish:semantic-release",
-    "repair": "bash <(curl -sS https://install.doctor/repair)",
-    "start": "test -z $SKIP_NPM_START && bash start.sh || true",
-    "test": "task lint:packer",
-    "unpack": "bash start.sh && task npm:bundle:unpack",
-    "update": "bash start.sh && task update",
-    "vagrant": "task vagrant:up",
-    "vscode": "bash start.sh && task vscode"
-  },
-  "type": "module",
-  "version": "1.0.0"
+  }
 }

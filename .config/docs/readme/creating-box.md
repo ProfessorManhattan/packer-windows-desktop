@@ -1,8 +1,8 @@
 ## Creating Your Own Box
 
-You can quickly use this project to create your own minimal {{ variables.description }} box by:
+You can quickly use this project to create your own minimal {{ template_json.variables.description }} box by:
 
-1. Creating a box on VagrantUp titled {{ variables.box_basename }} (Note: The VagrantUp box name should match the `"box_basename"` in the `template.json` file.)
+1. Creating a box on VagrantUp titled {{ template_json.variables.box_basename }} (Note: The VagrantUp box name should match the `"box_basename"` in the `template.json` file.)
 2. Changing the `"vagrantup_user"` variable in `template.json` to your VagrantUp username
 3. Acquiring a VagrantUp API token from the settings page
 4. Running the following code
