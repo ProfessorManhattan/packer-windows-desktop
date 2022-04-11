@@ -1,38 +1,67 @@
 {
-  "name": "@megabytelabs/packer-windows-desktop",
-  "version": "1.0.0",
-  "description": "A Windows 10 Enterprise (Insider's Preview) Packer project that enables both WinRM and SSH",
-  "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
-  "homepage": "https://megabyte.space",
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/megabyte-labs/packer/windows-desktop.git"
+  "blueprint": {
+    "description": "An automated Windows 11 Desktop Packer project that sets up SSH, WinRM, and virtualization additions",
+    "description_template": "Windows MAJOR_VERSION Enterprise (Insider's Preview)",
+    "description_template_package": "A Windows MAJOR_VERSION Enterprise (Insider's Preview) Packer project that enables both WinRM and SSH",
+    "group": "packer",
+    "hostname": "vagrant-windows",
+    "name": "Windows 11 Desktop",
+    "overview": "This project houses configurations that can be used to build performant [Windows 11](https://www.microsoft.com/en-us/windows/windows-11) desktop images. It downloads an Insider's Preview image as a base, uses Packer to automate the build process, and then sets the image up using some [Windows Bento scripts](https://github.com/chef/bento/tree/main/packer_templates/windows) which take care of optimizing the image for your system (i.e. setting up SSH with the Vagrant default public key, setting up GuestAdditions for VirtualBox, etc.). This project is intended to be used to create desktop images that you would launch from your main desktop using a GUI. If you are looking for headless images, you should either use [Bento's server images](https://app.vagrantup.com/bento). You might also have some luck browsing through our [Packer projects](https://gitlab.com/megabyte-labs/packer).",
+    "repository": {
+      "github": "https://github.com/megabyte-labs/packer-windows-desktop",
+      "gitlab": "https://gitlab.com/megabyte-labs/packer/windows-desktop"
+    },
+    "slug": "windows-desktop",
+    "subgroup": "desktop",
+    "title": "Windows 11 Desktop Template for Packer",
+    "vagrant_tag": "windows",
+    "version_description": "Windows 11 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM, SSH, Python 3, and Chocolatey. Perfect for Ansible testing. Bloat removed. See https://github.com/megabyte-labs/packer-windows-desktop for more details."
   },
   "bugs": {
     "email": "help@megabyte.space",
     "url": "https://gitlab.com/megabyte-labs/packer/windows-desktop/-/issues"
   },
-  "scripts": {
+  "changelog": {
+    "displayTypes": [
+      "feat",
+      "fix",
+      "perf",
+      "refactor",
+      "revert"
+    ],
+    "showAuthor": true
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "helpUrl": "https://megabyte.space/docs/contributing/commits"
   },
   "config": {
     "commitizen": {
-      "path": "cz-conventional-changelog"
+      "path": "node_modules/git-cz-emoji"
     }
   },
+  "dependencies": {},
+  "description": "An automated Windows 11 Desktop Packer project that sets up SSH, WinRM, and virtualization additions",
   "devDependencies": {
+    "@commitlint/config-conventional": "latest",
+    "eslint-config-strict-mode": "latest",
+    "git-cz-emoji": "latest",
+    "handlebars-helpers": "latest",
+    "prettier-config-sexy-mode": "latest",
+    "semantic-release-config": "latest",
+    "typescript": "^4.5.5"
   },
-  "keywords": [
-    "accelerated",
-    "compressed",
-    "desktop",
-    "optimized",
-    "packer",
-    "windows-desktop",
-    "workstation"
-  ],
   "engines": {
-    "node": ">=10"
+    "node": ">=14.18.0"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-strict-mode",
+    "rules": {
+      "json-schema-validator/no-invalid": "off"
+    }
   },
   "funding": [
     {
@@ -44,58 +73,186 @@
       "url": "https://www.patreon.com/ProfessorManhattan"
     }
   ],
+  "homepage": "https://megabyte.space",
+  "jscpd": {
+    "gitignore": true,
+    "threshold": 0.1
+  },
+  "keywords": [
+    "accelerated",
+    "compressed",
+    "desktop",
+    "kvm",
+    "mblabs",
+    "megabytelabs",
+    "optimized",
+    "packer",
+    "parallels",
+    "professormanhattan",
+    "qemu",
+    "virtualbox",
+    "vmware",
+    "washingtondc",
+    "windows-desktop",
+    "workstation"
+  ],
+  "license": "MIT",
   "lint-staged": {
-    "*.{json}": [
-      "prettier --write"
+    "(Brewfile|composer.lock|Gemfile|Gopkg.lock|Pipfile.lock)": [
+      "task fix:prettier --"
     ],
-    "scripts/*.custom.sh": [
-      "prettier --write"
+    "**/!(logo).(jpg|png)": [
+      "task image:compress --"
     ],
-    "package.json": [
-      "prettier-package-json --write"
+    "**/*": [
+      "task lint:any --"
+    ],
+    "**/*!(template).(json|webapp|webmanifest)": [
+      "task fix:json --"
+    ],
+    "**/*.(bash|cfg|cgi|command|css|env|env.*|handlebars|hbs|html|less|fcgi|java|md|mdx|mjml|php|phtml|properties|reg|scss|tmpl|tmux|tool|tpl|zsh)": [
+      "task fix:prettier --"
+    ],
+    "**/*.(cjs|js|jsx|mjs|ts|tsx)": [
+      "task fix:js --",
+      "task lint:js --"
+    ],
+    "**/*.(yml|yaml)": [
+      "task fix:yaml --",
+      "task lint:yaml --"
+    ],
+    "**/*.go": [
+      "task fix:go --",
+      "task lint:go --"
+    ],
+    "**/*.md": [
+      "task fix:markdown --",
+      "task lint:spelling:markdown --"
+    ],
+    "**/*.php": [
+      "task fix:php --",
+      "task lint:php --"
+    ],
+    "**/*.py": [
+      "task fix:python --",
+      "task lint:python --"
+    ],
+    "**/*.sh": [
+      "task fix:prettier --",
+      "task fix:shell --",
+      "task lint:shell --"
+    ],
+    "**/*.toml": [
+      "task fix:toml --",
+      "task fix:prettier --",
+      "task lint:toml --"
+    ],
+    "**/*.xml": [
+      "task fix:xml --",
+      "task lint:xml --"
+    ],
+    "*template.json": [
+      "task fix:packer --",
+      "task fix:json --",
+      "task lint:packer --"
+    ],
+    "Dockerfile": [
+      "task fix:prettier --",
+      "task lint:docker --"
+    ],
+    "Vagrantfile": [
+      "task fix:prettier --",
+      "task lint:vagrant"
+    ],
+    "logo.png": [
+      "task image:resize -- 200 200",
+      "task image:compress --"
     ]
   },
-  "blueprint": {
-    "description": "An automated Windows 11 Desktop Packer project that sets up SSH, WinRM, and virtualization additions",
-  "description_template": "Windows MAJOR_VERSION Enterprise (Insider's Preview)",
-  "description_template_package": "A Windows MAJOR_VERSION Enterprise (Insider's Preview) Packer project that enables both WinRM and SSH",
-  "hostname": "vagrant-windows",
-  "group": "packer",
-  "name": "Windows 11 Desktop",
-  "repository": {
-    "github": "https://github.com/megabyte-labs/packer-windows-desktop",
-    "gitlab": "https://gitlab.com/megabyte-labs/packer/windows-desktop"
-  },
-  "subgroup": "desktop",
-  "title": "Windows 11 Desktop Template for Packer",
-  "overview": "This project houses configurations that can be used to build performant [Windows 11](https://www.microsoft.com/en-us/windows/windows-11) desktop images. It downloads an Insider's Preview image as a base, uses Packer to automate the build process, and then sets the image up using some [Windows Bento scripts](https://github.com/chef/bento/tree/main/packer_templates/windows) which take care of optimizing the image for your system (i.e. setting up SSH with the Vagrant default public key, setting up GuestAdditions for VirtualBox, etc.). This project is intended to be used to create desktop images that you would launch from your main desktop using a GUI. If you are looking for headless images, you should either use [Bento's server images](https://app.vagrantup.com/bento). You might also have some luck browsing through our [Packer projects](https://gitlab.com/megabyte-labs/packer).",
-  "slug": "windows-desktop",
-  "vagrant_tag": "windows",
-  "version_description": "Windows 11 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM, SSH, Python 3, and Chocolatey. Perfect for Ansible testing. Bloat removed. See https://github.com/megabyte-labs/packer-windows-desktop for more details."
-  },
-  "prettier": "@megabytelabs/prettier-config",
-  "scripts-info": {
-    "build": "Build all of the images",
-    "build:hyperv": "Build a Hyper-V image",
-    "build:kvm": "Build a QEMU/KVM image",
-    "build:parallels": "Build a Parallels image",
-    "build:virtualbox": "Build a VirtualBox image",
-    "build:vmware": "Build a VMWare image",
-    "commit": "The preferred way of running git commit (instead of git commit, we prefer running 'npm run commit')",
-    "fix": "Automatically fix formatting errors",
-    "info": "Logs descriptions of all the npm tasks",
-    "launch": "Runs 'vagrant up' to automatically spin up the VM",
-    "misc:markdown-links": "Checks markdown files for broken links",
-    "prepare-release": "Updates the CHANGELOG with commits made using 'npm run commit' and updates the project to be ready for release",
-    "test": "Validates the Packer configuration file (i.e. template.json) and performs some other linting",
-    "update": "Runs .start.sh to automatically update meta files and documentation",
-    "version": "Used by 'npm run prepare-release' to update the CHANGELOG and app version"
-  },
-  "standard-version": {
-    "scripts": {
-      "prebump": "jq -r '.variables.iso_version' template.json",
-      "prerelease": "git add --all",
-      "pretag": "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && if git show-ref --tags v$PACKAGE_VERSION --quiet; then git tag -d v$PACKAGE_VERSION; fi"
+  "name": "@mblabs/windows-desktop",
+  "ntl": {
+    "descriptions": {
+      "build": "Builds the project using the build command specified under scripts in package.json",
+      "commit": "If unsure, use this task to commit your code so that it adheres to our commit rules",
+      "fix": "Run auto-fixing with all available auto-fixers",
+      "help": "Display the Bodega Taskfile.yml interactive help menu",
+      "lint": "Lint the project with all available linters",
+      "preload": "Preload the operating system with commonly used libraries and tools",
+      "prepare": "A hook triggered by running npm install that runs logic such as installing pre-commit hooks",
+      "release": "Publish the software to all supported channels using semantic-release",
+      "repair": "Fixes basic issues in projects that are having trouble running basic commands like 'task start'",
+      "start": "Entrypoint for new developers that installs requirements and then runs 'task start'",
+      "test": "Runs the appropriate test logic by running the test command defined under scripts in package.json",
+      "unpack": "Populates production node_modules from compressed copies saved in the .modules/ folder",
+      "update": "Update and refresh the repository with upstream changes and templated parts",
+      "vagrant": "Opens an interactive dialog that lets you choose between virtualization platforms to use with the \"vagrant up\" command"
     }
-  }
+  },
+  "optionalDependencies": {},
+  "pnpm": {
+    "allowedVersions": {
+      "@typescript-eslint/eslint-plugin": "5",
+      "typescript": "4"
+    },
+    "neverBuiltDependencies": [
+      "core-js",
+      "core-js-pure",
+      "highlight.js"
+    ],
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "eslint",
+        "prettier",
+        "puppeteer"
+      ]
+    }
+  },
+  "prettier": "prettier-config-sexy-mode",
+  "private": false,
+  "publishConfig": {
+    "@gitlab:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "tag": "edge"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "master",
+      "next",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
+    ],
+    "extends": "semantic-release-config"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/megabyte-labs/packer-windows-desktop.git"
+  },
+  "scripts": {
+    "build": "task packer:build",
+    "build:hyperv": "task packer:build:hyperv",
+    "build:kvm": "task packer:build:kvm",
+    "build:parallels": "task packer:build:parallels",
+    "build:virtualbox": "task packer:build:virtualbox",
+    "build:vmware": "task packer:build:vmware",
+    "commit": "bash start.sh && task commit",
+    "fix": "bash start.sh && task fix",
+    "help": "bash start.sh && task --menu",
+    "lint": "bash start.sh && task lint",
+    "preload": "bash start.sh && task preload",
+    "prepare": "bash start.sh && (test -f Taskfile.yml && task npm:prepare) || true",
+    "release": "bash start.sh && task publish:semantic-release",
+    "repair": "bash <(curl -sS https://install.doctor/repair)",
+    "start": "test -z $SKIP_NPM_START && bash start.sh || true",
+    "test": "task lint:packer",
+    "unpack": "bash start.sh && task npm:bundle:unpack",
+    "update": "bash start.sh && task update",
+    "vagrant": "task vagrant:up",
+    "vscode": "bash start.sh && task vscode"
+  },
+  "type": "module",
+  "version": "1.0.0"
 }
