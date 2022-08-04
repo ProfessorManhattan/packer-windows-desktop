@@ -45,13 +45,13 @@
   "dependencies": {},
   "optionalDependencies": {},
   "devDependencies": {
+    "@commitlint/config-conventional": "latest",
     "eslint-config-strict-mode": "latest",
     "git-cz-emoji": "latest",
+    "handlebars-helpers": "latest",
     "prettier-config-sexy-mode": "latest",
     "semantic-release-config": "latest",
-    "typescript": "^4.5.5",
-    "@commitlint/config-conventional": "latest",
-    "handlebars-helpers": "latest"
+    "typescript": "^4.5.5"
   },
   "keywords": [
     "accelerated",
@@ -75,7 +75,7 @@
     "node": ">=14.18.0"
   },
   "publishConfig": {
-    "@gitlab:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
+    "@gitlab:registry": "https://gitlab.com/api/v4/projects/24081313/packages/npm/",
     "access": "public",
     "registry": "https://registry.npmjs.org/",
     "tag": "edge"
@@ -83,6 +83,9 @@
   "blueprint": {
     "description": "An automated Windows 11 Desktop Packer project that sets up SSH, WinRM, and virtualization additions",
     "description_template": "Windows MAJOR_VERSION Enterprise (Insider's Preview)",
+    "github_id": "R_kgDOHKGWig",
+    "gitlab_group_id": "10839950",
+    "gitlab_project_id": "24081313",
     "group": "packer",
     "hostname": "vagrant-windows",
     "name": "Windows 11 Desktop",
@@ -95,10 +98,7 @@
     "subgroup": "desktop",
     "title": "Windows 11 Desktop Template for Packer",
     "vagrant_tag": "windows",
-    "version_description": "Windows 11 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM, SSH, Python 3, and Chocolatey. Perfect for Ansible testing. Bloat removed. See https://github.com/megabyte-labs/packer-windows-desktop for more details.",
-    "github_id": "R_kgDOHKGWig",
-    "gitlab_project_id": "24081313",
-    "gitlab_group_id": "10839950"
+    "version_description": "Windows 11 Enterprise (Insider's Preview) ISO_VERSION. Includes WinRM, SSH, Python 3, and Chocolatey. Perfect for Ansible testing. Bloat removed. See https://github.com/megabyte-labs/packer-windows-desktop for more details."
   },
   "changelog": {
     "displayTypes": [
@@ -111,7 +111,9 @@
     "showAuthor": true
   },
   "commitlint": {
-    "extends": [],
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
     "helpUrl": "https://megabyte.space/docs/contributing/commits"
   },
   "eslintConfig": {
@@ -201,6 +203,9 @@
       "task fix:prettier --",
       "task lint:vagrant"
     ],
+    "logo.(gif|jpg|jpeg|webp)": [
+      "task image:convert:logo --"
+    ],
     "logo.png": [
       "task image:resize -- 200 200",
       "task image:compress --"
@@ -254,5 +259,9 @@
       }
     ],
     "extends": "semantic-release-config"
+  },
+  "volta": {
+    "node": "18.4.0",
+    "yarn": "1.22.19"
   }
 }

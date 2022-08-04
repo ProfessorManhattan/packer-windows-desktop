@@ -24,7 +24,7 @@
     <img alt="Version: {{ pkg.version }}" src="https://img.shields.io/badge/version-{{ pkg.version }}-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCNdjIACY//+BEp9hhM3hAzYQwoBIAqEDYQrCZLwAAGlFKxU1nF9cAAAAAElFTkSuQmCC&cacheSeconds=2592000&style={{ alt_badge_style }}" />
   </a>
   <a title="Pipeline status" href="{{ repository.gitlab }}{{ repository.location.commits.gitlab }}" target="_blank">
-    <img alt="Pipeline status" src="https://img.shields.io/gitlab/pipeline-status/{{ playbook_path }}?branch=master&label=build&logo=gitlab&style={{ alt_badge_style }}">
+    <img alt="Pipeline status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=master&label=build&logo=gitlab&style={{ alt_badge_style }}">
   </a>
   <a title="Hyper-V build status" href="{{ repository.gitlab }}{{ repository.location.commits.gitlab }}" target="_blank">
     <img alt="Hyper-V build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=hyperv&label=build&logo=hyper&style={{ alt_badge_style }}">

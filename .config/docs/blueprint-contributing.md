@@ -6,3 +6,4 @@
 {{ load:.config/docs/contributing/getting-started.md }}
 {{ load:.config/docs/contributing/pull-requests.md }}
 {{ load:.config/docs/contributing/formatting.md }}
+{{ load:.config/docs/common/contributing/troubleshooting.md }}

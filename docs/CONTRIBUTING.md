@@ -157,3 +157,5 @@ In each of our Packer repositories, you will see a file named `template.json`. T
 ### Conversion to HCL
 
 We chose JSON for the template because nearly all the examples on the internet are written in JSON. However, the Packer team is rolling out a new markup language for creating templates called HCL. Some newer features will only be provided for use by HCL templates. Eventually, we plan on porting our templates over to HCL. If you can help with this then please open a pull request! You can actually do a lot of the work automatically by running `packer hcl2_upgrade template.json` but some manual oversight is necessary to keep the configuration neat.
+
+{{ load:.config/docs/common/contributing/troubleshooting.md }}
