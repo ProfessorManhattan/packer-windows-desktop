@@ -165,6 +165,7 @@ tasks:
       - :install:modules:local
       - :install:npm:liquidjs
       - :install:software:jq
+      - template:liquidjs:python:deps
     todo: Update project when Taskfile.yml gets modified
     vars:
       PYTHON_BREW_NOTICE: In order for this file to be generated, the customPyPiPackageName needs to be specified in the
@@ -192,7 +193,7 @@ tasks:
           FILE="$1"
           TMP="$(mktemp)"
           .config/log info 'Generating `'"${FILE//.liquid}"'` from `'"$FILE"'`'
-          {{.NPX_HANDLE}}hbs --data .variables.json --helper ./.config/hbs.cjs "$FILE" --stdout > "$TMP"
+          hbs --data .variables.json --helper ./.config/hbs.cjs "$FILE" --stdout > "$TMP"
           mv "$TMP" "${FILE//.liquid}"
           rm "$FILE"
         }
@@ -224,10 +225,16 @@ tasks:
       - rm package.json.bak
       - task: template:pyproject
 
+  template:liquidjs:python:deps:
+    cmds:
+      - task: :install:pipx:poet
+    status:
+      - '[ "{{.REPOSITORY_TYPE}}" != "python" ]'
+
   template:pyproject:
     run: once
     cmds:
-      - task: :install:github:fusion
+      - task: :install:gh:fusion
       - task: template:pyproject:config
       - task: template:pyproject:local
       - task: template:pyproject:fix
@@ -257,6 +264,8 @@ tasks:
       - '[ -n "$NO_INSTALL_HOMEBREW" ]'
 
   template:pyproject:local:
+    deps:
+      - :install:gh:fusion
     vars:
       PYPROJECT_NOTICE: |-
         ##### IMPORTANT DEVELOPER NOTICE #####

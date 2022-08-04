@@ -37,6 +37,7 @@ db.sqlite3-journal
 .directory
 dist/
 .DocumentRevisions-V100
+.docusaurus/
 .DS_Store
 .env
 env/
@@ -102,6 +103,7 @@ typings/
 .variables.json
 .vault_pass
 .venv/
+.ventoy.json
 venv/
 venv.bak/
 .VolumeIcon.icns
@@ -111,3 +113,5 @@ venv.bak/
 !.vscode/settings.json
 !.vscode/tasks.json
 yarn-error.log
+.yubi.json
+.yubi-masterkey

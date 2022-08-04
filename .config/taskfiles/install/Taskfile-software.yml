@@ -22,6 +22,8 @@ tasks:
       - task: install:software
         vars:
           PACKAGE: act
+    status:
+      - type act > /dev/null
 
   allure:
     run: once
@@ -29,6 +31,8 @@ tasks:
       - task: install:software
         vars:
           PACKAGE: allure
+    status:
+      - type allure > /dev/null
 
   ansifilter:
     run: once
@@ -38,6 +42,17 @@ tasks:
       - task: install:software
         vars:
           PACKAGE: ansifilter
+    status:
+      - type ansifilter > /dev/null
+
+  axel:
+    run: once
+    cmds:
+      - task: install:software
+        vars:
+          PACKAGE: axel
+    status:
+      - type axel > /dev/null
 
   brew:
     run: once
@@ -75,9 +90,7 @@ tasks:
             .config/log info 'Attempting to install Homebrew - you may be prompted for your `sudo` password'
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           fi
-          if [ '{{.BODEGA}}' != 'true' ]; then
-            task install:software:exit:notice:reload
-          fi
+          task install:software:exit:notice:reload
         fi
       - task: brew:utils
     status:
@@ -107,9 +120,7 @@ tasks:
           fi
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           ensureSource "$HOME/.profile"
-          if [ '{{.BODEGA}}' != 'true' ]; then
-            task install:software:exit:notice:reload
-          fi
+          task install:software:exit:notice:reload
         fi
     status:
       - type brew &> /dev/null
@@ -139,8 +150,10 @@ tasks:
       - task: install:software
         vars:
           INSTALL_TASK: '{{.TASK}}'
-
           PACKAGE: codeclimate/formulae/codeclimate
+    status:
+      - type codeclimate > /dev/null
+
   common:
     run: once
     log:
@@ -172,15 +185,25 @@ tasks:
       LINUX_FAMILY:
         sh: |
           if [ -f "/etc/debian_version" ]; then
-            echo "debian"
+            echo 'debian'
           elif [ -f "/etc/redhat-release" ]; then
-            echo "redhat"
+            echo 'redhat'
           elif [ -f "/etc/arch-release" ]; then
-            echo "archlinux"
+            echo 'archlinux'
           elif [ -f "/etc/alpine-release" ]; then
-            echo "alpine"
+            echo 'alpine'
+          elif type apk &> /dev/null; then
+            echo 'alpine'
+          elif type apt-get &> /dev/null; then
+            echo 'debian'
+          elif type dnf &> /dev/null; then
+            echo 'redhat'
+          elif type pacman &> /dev/null; then
+            echo 'archlinux'
+          elif type yum &> /dev/null; then
+            echo 'redhat'
           else
-            echo "unknown"
+            echo 'unknown'
           fi
     log:
       error: Failed to ensure basic system dependencies are installed
@@ -435,6 +458,8 @@ tasks:
       - task: install:software
         vars:
           PACKAGE: container-structure-test
+    status:
+      - type container-structure-test > /dev/null
 
   coreutils:
     cmds:
@@ -451,6 +476,8 @@ tasks:
       - task: install:software
         vars:
           PACKAGE: dasel
+    status:
+      - type dasel > /dev/null
 
   deno:
     run: once
@@ -458,6 +485,8 @@ tasks:
       - task: install:software
         vars:
           PACKAGE: deno
+    status:
+      - type deno > /dev/null
 
   docker:
     run: once
@@ -474,6 +503,8 @@ tasks:
       - task: install:software
         vars:
           PACKAGE: docker-slim
+    status:
+      - type docker-slim > /dev/null
 
   docker:darwin:
     run: once
@@ -504,7 +535,10 @@ tasks:
     cmds:
       - task: install:software
         vars:
+          BIN_NAME: dockle
           PACKAGE: goodwithtech/r/dockle
+    status:
+      - type dockle > /dev/null
 
   exiftool:
     run: once
@@ -521,8 +555,7 @@ tasks:
   exit:notice:reload:
     cmds:
       - .config/log warn 'Software was installed that requires a terminal session reload'
-      - .config/log info 'Please close and re-open the terminal. Then, re-run the same command to continue.'
-      - exit 1
+      - .config/log warn 'Please close and re-open the terminal. Then, re-run the same command to continue if you face any issues.'
     status:
       - '[ -f /.dockerenv ]'
 
@@ -607,6 +640,15 @@ tasks:
     status:
       - type git > /dev/null
 
+  git-bug:
+    run: once
+    cmds:
+      - task: install:software
+        vars:
+          PACKAGE: git-bug
+    status:
+      - type git-bug > /dev/null
+
   git-issue:admin:
     run: once
     cmds:
@@ -622,6 +664,8 @@ tasks:
       - task: install:software
         vars:
           PACKAGE: gitlab-runner
+    status:
+      - type gitlab-runner > /dev/null
 
   gitleaks:
     run: once
@@ -629,6 +673,8 @@ tasks:
       - task: install:software
         vars:
           PACKAGE: gitleaks
+    status:
+      - type gitleaks > /dev/null
 
   glab:
     run: once
@@ -636,6 +682,8 @@ tasks:
       - task: install:software
         vars:
           PACKAGE: glab
+    status:
+      - type glab > /dev/null
 
   go:
     run: once
@@ -698,6 +746,13 @@ tasks:
     status:
       - type gzip > /dev/null
 
+  hey:
+    run: once
+    cmds:
+      - task: install:software
+        vars:
+          PACKAGE: hey
+
   install:software:
     vars:
       BIN: '{{if .BIN_NAME}}{{.BIN_NAME}}{{else}}{{last (splitList "/" .PACKAGE)}}{{end}}'
@@ -739,11 +794,28 @@ tasks:
       - type qemu-system-x86_64 > /dev/null
 
   node:
+    deps:
+      - common
+      - volta
+    run: once
+    cmds:
+      - task: node:install
+    status:
+      - type node &> /dev/null
+
+  node:install:
+    cmds:
+      - |
+        . "$HOME/.profile" &> /dev/null || true
+        volta install node
+
+  p7zip:
     run: once
     cmds:
       - task: install:software
         vars:
-          PACKAGE: node
+          BIN_NAME: 7z
+          PACKAGE: p7zip
 
   packer:
     run: once
@@ -762,6 +834,15 @@ tasks:
           CASK: parallels
     status:
       - '[ "{{OS}}" != "darwin" ] || ! mdfind -name "Parallels Desktop.app" &> /dev/null'
+
+  pinentry:
+    run: once
+    cmds:
+      - task: install:software
+        vars:
+          PACKAGE: pinentry-mac
+    status:
+      - '[ "{{OS}}" != "darwin" ] || [ -f /usr/local/bin/pinentry-mac ]'
 
   pipx:
     tags:
@@ -784,9 +865,30 @@ tasks:
       - pipx ensurepath
 
   pipx:linux:
+    deps:
+      - pipx:linux:brew
+      - pipx:linux:system
+
+  pipx:linux:brew:
     cmds:
-      - python3 -m pip install --user pipx
+      - python3 -m ensurepip && python3 -m pip install --user pipx
       - python3 -m pipx ensurepath
+    status:
+      - '[ "$(which python3)" == "/usr/bin/python3" ]'
+
+  pipx:linux:system:
+    cmds:
+      - task: system
+        vars:
+          PACKAGE: pipx
+      - task: system
+        vars:
+          PACKAGE: python3-pip
+      - task: system
+        vars:
+          PACKAGE: python3-venv
+    status:
+      - '[ "$(which python3)" != "/usr/bin/python3" ]'
 
   pipx:windows:
     log:
@@ -825,6 +927,8 @@ tasks:
       - exit 1
 
   python:
+    deps:
+      - common
     run: once
     cmds:
       - task: brew
@@ -849,6 +953,57 @@ tasks:
           PACKAGE: python@3.10
     status:
       - type python3 > /dev/null
+
+
+  python:pip:
+    run: once
+    cmds:
+      - |
+        PIP_LOCATION="$(which pip)"
+        PIP3_LOCATION="$(which pip3)"
+        if [ "$USER" == "root" ]; then
+          if type pip &> /dev/null && type pip3 &> /dev/null; then
+            rm "$PIP_LOCATION"
+            ln -s "$PIP3_LOCATION" "$PIP_LOCATION"
+          elif type pip3 &> /dev/null; then
+            ln -s "$PIP3_LOCATION" /usr/bin/pip
+          elif type pip &> /dev/null; then
+            ln -s "$PIP_LOCATION" /usr/bin/pip3
+          else
+            .config/log warn 'Both `pip` and `pip3` appear to be missing'
+          fi
+        elif type sudo &> /dev/null && sudo -n true; then
+          if type pip &> /dev/null && type pip3 &> /dev/null; then
+            sudo rm "$PIP_LOCATION"
+            sudo ln -s "$PIP3_LOCATION" "$PIP_LOCATION"
+          elif type pip3 &> /dev/null; then
+            sudo ln -s "$PIP3_LOCATION" /usr/bin/pip
+          elif type pip &> /dev/null; then
+            sudo ln -s "$PIP_LOCATION" /usr/bin/pip3
+          else
+            .config/log warn 'Both `pip` and `pip3` appear to be missing'
+          fi
+        elif type sudo &> /dev/null; then
+          if type pip &> /dev/null && type pip3 &> /dev/null; then
+            .config/log info 'Running `sudo rm $(which pip)`'
+            sudo rm "$PIP_LOCATION"
+            sudo ln -s "$PIP3_LOCATION" "$PIP_LOCATION"
+          elif type pip3 &> /dev/null; then
+            .config/log info 'Running `sudo ln -s $(which pip3) /usr/bin/pip`'
+            sudo ln -s "$PIP3_LOCATION" /usr/bin/pip
+          elif type pip &> /dev/null; then
+            .config/log info 'Running `sudo ln -s $(which pip) /usr/bin/pip3`'
+            sudo ln -s "$PIP_LOCATION" /usr/bin/pip3
+          else
+            .config/log warn 'Both `pip` and `pip3` appear to be missing'
+          fi
+        else
+           .config/log warn '`sudo` unavailable and user has no permissions'
+        fi
+    status:
+      - which pip > /dev/null
+      - which pip3 > /dev/null
+      - '[ "$(which pip)" == "$(which pip3)" ]'
 
   python:windows:
     log:
@@ -877,6 +1032,14 @@ tasks:
         vars:
           BIN_NAME: cargo
           PACKAGE: rust
+
+  s5cmd:
+    run: once
+    cmds:
+      - task: install:software
+        vars:
+          BIN_NAME: s5cmd
+          PACKAGE: peak/tap/s5cmd
 
   sentry:
     cmds:
@@ -929,7 +1092,7 @@ tasks:
 
   system:
     vars:
-      PACKAGE: '{{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}{{.PACKAGE}}{{end}}'
+      PACKAGE: '{{if .PACKAGE}}{{.PACKAGE}}{{else}}{{.CLI_ARGS}}{{end}}'
     log:
       error: Failed to install `{{.PACKAGE}}` with the system package manager
       start: Attempting to install `{{.PACKAGE}}` using the system package manager
@@ -943,6 +1106,9 @@ tasks:
       - task: system:dnf
         vars:
           PACKAGE: '{{.PACKAGE}}'
+      - task: system:pacman
+        vars:
+          PACKAGE: '{{.PACKAGE}}'
       - task: system:yum
         vars:
           PACKAGE: '{{.PACKAGE}}'
@@ -950,7 +1116,7 @@ tasks:
         vars:
           PACKAGE: '{{.PACKAGE}}'
     status:
-      - type {{.PACKAGE}} > /dev/null
+      - type {{.PACKAGE}} > /dev/null || [ '{{.PACKAGE}}' == 'null' ]
 
   system:apk:
     vars:
@@ -1075,8 +1241,6 @@ tasks:
         vars:
           BIN_NAME: unbuffer
           PACKAGE: expect
-    status:
-      - type unbuffer > /dev/null
 
   vagrant:
     cmds:
@@ -1119,12 +1283,23 @@ tasks:
         vars:
           SOFTWARE: virtualbox
 
+  volta:
+    cmds:
+      - .config/log info 'Installing Volta'
+      - curl https://get.volta.sh | bash
+      - |
+        . "$HOME/.profile" &> /dev/null || true
+        volta setup
+      - .config/log success 'Successfully setup Volta'
+    status:
+      - type volta > /dev/null
+
   vmware:
     cmds:
       - task: vmware:{{OS}}
       - task: exit:notice:restart
     status:
-      - type vmware > /dev/null
+      - type vmrun > /dev/null
 
   vmware:darwin:
     run: once
@@ -1157,3 +1332,10 @@ tasks:
       - task: install:software
         vars:
           PACKAGE: yq
+
+  yubikey-agent:
+    run: once
+    cmds:
+      - task: install:software
+        vars:
+          PACKAGE: yubikey-agent

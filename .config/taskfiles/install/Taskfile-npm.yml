@@ -17,6 +17,13 @@ tasks:
           BIN_NAME: bw
           PACKAGE: '@bitwarden/cli'
 
+  browserslist:
+    run: once
+    cmds:
+      - task: install:npm
+        vars:
+          PACKAGE: browserslist
+
   bundle:
     cmds:
       - task: :install:modules:global
@@ -55,6 +62,14 @@ tasks:
           PACKAGE: '@commitlint/cli'
     status:
       - '[ -n "$CI" ]'
+
+  crowdin:
+    run: once
+    cmds:
+      - task: install:npm
+        vars:
+          BIN_NAME: crowdin
+          PACKAGE: '@crowdin/cli'
 
   cspell:
     run: once
@@ -175,6 +190,14 @@ tasks:
       - task: install:npm
         vars:
           PACKAGE: husky
+
+  ifttt:
+    run: once
+    cmds:
+      - task: install:npm
+        vars:
+          BIN_NAME: ifttt
+          PACKAGE: ifttt-cli
 
   install:npm:
     vars:
@@ -391,6 +414,15 @@ tasks:
         vars:
           PACKAGE: prettier
 
+  quicktype:
+    run: once
+    tags:
+      - update
+    cmds:
+      - task: install:npm
+        vars:
+          PACKAGE: quicktype
+
   readme:
     run: once
     tags:
@@ -399,8 +431,16 @@ tasks:
       - task: install:npm
         vars:
           BIN_NAME: readme
-
           PACKAGE: '@appnest/readme'
+
+  real-favicon:
+    run: once
+    cmds:
+      - task: install:npm
+        vars:
+          BIN_NAME: real-favicon
+          PACKAGE: cli-real-favicon
+
   remark:
     run: once
     tags:
@@ -519,6 +559,13 @@ tasks:
       - task: install:npm
         vars:
           PACKAGE: typesync
+
+  wrangler:
+    run: once
+    cmds:
+      - task: install:npm
+        vars:
+          PACKAGE: wrangler
 
   yarnhook:
     run: once

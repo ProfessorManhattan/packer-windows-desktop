@@ -91,22 +91,23 @@ tasks:
       success: Successfully installed local NPM dependencies
     cmds:
       - task: tslib
-      - |
-        if [ "$DEPS" != "$PREVIOUS_DEPS" ] || [ ! -d node_modules ]; then
-          if [ -n "$AUTO_UPDATE_NPM_PACKAGES" ]; then
-            {{.NPM_PROGRAM_LOCAL}} update
-          else
-            {{.NPM_PROGRAM_LOCAL}} install {{if eq .NPM_PROGRAM_LOCAL "pnpm"}}--public-hoist-pattern *types* \
-            --public-hoist-pattern *eslint* --public-hoist-pattern @prettier/plugin-* \
-            --public-hoist-pattern *prettier-plugin-* --public-hoist-pattern *jest* {{end}}|| EXIT_CODE=$?
-            if [ -n "$EXIT_CODE" ]; then
-              .config/log info 'Running `{{.NPM_PROGRAM_LOCAL}} update` because install had non-zero exit code '"(Code $EXIT_CODE)"
+      - cmd: |
+          if [ "$DEPS" != "$PREVIOUS_DEPS" ] || [ ! -d node_modules ]; then
+            if [ -n "$AUTO_UPDATE_NPM_PACKAGES" ]; then
               {{.NPM_PROGRAM_LOCAL}} update
+            else
+              {{.NPM_PROGRAM_LOCAL}} install {{if eq .NPM_PROGRAM_LOCAL "pnpm"}}--public-hoist-pattern *types* \
+              --public-hoist-pattern *eslint* --public-hoist-pattern @prettier/plugin-* \
+              --public-hoist-pattern *prettier-plugin-* --public-hoist-pattern *jest* {{end}}|| EXIT_CODE=$?
+              if [ -n "$EXIT_CODE" ]; then
+                .config/log info 'Running `{{.NPM_PROGRAM_LOCAL}} update` because install had non-zero exit code '"(Code $EXIT_CODE)"
+                {{.NPM_PROGRAM_LOCAL}} update
+              fi
             fi
           fi
-        fi
-        mkdir -p .task
-        echo "$DEPS" > .task/npm-deps
+          mkdir -p .task
+          echo "$DEPS" > .task/npm-deps
+        ignore_error: true
     sources:
       - package.json
 
@@ -210,38 +211,6 @@ tasks:
           .config/log error "System type not recognized ($OSTYPE)"
         fi
 
-  pipx:bundle:
-    cmds:
-      - task: pipx:global
-
-  pipx:global:
-    todo: Remove once task --tag is implemented
-    deps:
-      - :install:software:pipx
-      - :install:software:yq
-    vars:
-      PIPX_PACKAGES: ansible-base ansible-lint ansibler bandit black blocklint flake8
-        mod-ansible-autodoc molecule mypy pre-commit-hooks pydocstyle pylint
-        proselint semgrep
-      PIPX_PACKAGES__: ansible-base ansible-lint ansibler black blocklint docker flake8
-        mod-ansible-autodoc molecule molecule-docker molecule-vagrant pre-commit-hooks
-        proselint python-vagrant pywinrm
-    log:
-      error: Error encountered while pre-loading common pipx packages
-      start: Pre-loading common pipx packages
-      success: Finished pre-loading common pipx packages
-    cmds:
-      - |
-        for PKG in {{.PIPX_PACKAGES}}; do
-          if ! type "$PKG" > /dev/null; then
-            .config/log info "Ensuring $PKG is installed"
-            pipx install "$PKG" &
-          else
-            .config/log info "$PKG is already installed"
-          fi
-        done
-        wait
-
   profile:add:
     log:
       error: Error modifying $HOME/.profile
@@ -252,7 +221,7 @@ tasks:
         if [ '{{OS}}' == 'darwin' ] || [ '{{OS}}' == 'linux' ]; then
           # shellcheck disable=SC2016
           PROFILE_STRING='{{.PROFILE_STRING}}'
-          if ! grep "$PROFILE_STRING" "$HOME/.profile" > /dev/null; then
+          if ! cat "$HOME/.profile" | grep "$PATH_STRING" > /dev/null; then
             echo -e "${PROFILE_STRING}\n" >> "$HOME/.profile"
             .config/log info 'Added `{{.PROFILE_STRING}}` to '"$HOME/.profile"
           fi
@@ -276,7 +245,119 @@ tasks:
       success: Successfully extracted Scoop information
     cmds:
       - jq --arg scoops "$(jq -n '[["Project", "Description"], (inputs | ["**[" + .homepage + "](" + .homepage + ")**", .description ])]' Scoops/*.json)"
-        '.scoops = $scoops' .variables.json > "$TMP" && mv "$TMP" .variables.json
+        '.scoop_var_chart = $scoops' .variables.json > "$TMP" && mv "$TMP" .variables.json
+
+  system:upgrade:
+    log:
+      error: Encountered error while upgrading system
+      start: Upgrading system packages
+    cmds:
+      - task: system:upgrade:apk
+      - task: system:upgrade:apt-get
+      - task: system:upgrade:dnf
+      - task: system:upgrade:pacman
+      - task: system:upgrade:yum
+      - task: system:upgrade:macos
+
+  system:upgrade:apk:
+    cmds:
+      - |
+        if [ "$USER" == "root" ]; then
+          .config/log info 'TODO'
+        elif type sudo &> /dev/null && sudo -n true; then
+          .config/log info 'TODO'
+        elif type sudo &> /dev/null; then
+          .config/log info 'TODO'
+        else
+          .config/log warn '`sudo` unavailable and user has no permissions'
+        fi
+    status:
+      - '[ -z "$(which apk)" ]'
+
+  system:upgrade:apt-get:
+    cmds:
+      - |
+        if [ "$USER" == "root" ]; then
+          apt-get update
+          apt-get install -y {{.PACKAGE}}
+        elif type sudo &> /dev/null && sudo -n true; then
+          sudo apt-get update
+          sudo apt -y upgrade
+        elif type sudo &> /dev/null; then
+          .config/log info 'Running `sudo apt-get update`'
+          sudo apt-get update
+          .config/log info 'Running `sudo apt -y upgrade`'
+          sudo apt -y upgrade
+        else
+           .config/log warn '`sudo` unavailable and user has no permissions'
+        fi
+    status:
+      - '[ -z "$(which apt-get)" ]'
+
+  system:upgrade:dnf:
+    cmds:
+      - |
+        if [ "$USER" == "root" ]; then
+          dnf clean all
+          dnf check-update
+          dnf update
+        elif type sudo &> /dev/null && sudo -n true; then
+          sudo dnf clean all
+          sudo dnf check-update
+          sudo dnf update
+        elif type sudo &> /dev/null; then
+          .config/log info 'Running `sudo dnf clean all`'
+          sudo dnf clean all
+          .config/log info 'Running `sudo dnf check-update`'
+          sudo dnf check-update
+          .config/log info 'Running `sudo dnf update`'
+          sudo dnf update
+        else
+           .config/log warn '`sudo` unavailable and user has no permissions'
+        fi
+    status:
+      - '[ -z "$(which dnf)" ]'
+
+  system:upgrade:macos:
+    cmds:
+      - echo "TODO Upgrade macOS system version via CLI"
+    status:
+      - '[ "{{OS}}" != "darwin" ]'
+
+  system:upgrade:pacman:
+    cmds:
+      - |
+        if [ "$USER" == "root" ]; then
+          .config/log 'TODO'
+        elif type sudo &> /dev/null && sudo -n true; then
+          .config/log 'TODO'
+        elif type sudo &> /dev/null; then
+          .config/log 'TODO'
+        else
+           .config/log warn '`sudo` unavailable and user has no permissions'
+        fi
+    status:
+      - '[ -z "$(which pacman)" ]'
+
+  system:upgrade:yum:
+    cmds:
+      - |
+        if [ "$USER" == "root" ]; then
+          yum clean all
+          yum update
+        elif type sudo &> /dev/null && sudo -n true; then
+          sudo yum clean all
+          sudo yum update
+        elif type sudo &> /dev/null; then
+          .config/log info 'Running `sudo yum clean all`'
+          sudo yum clean all
+          .config/log info 'Running `sudo yum update`'
+          sudo yum update
+        else
+           .config/log warn '`sudo` unavailable and user has no permissions'
+        fi
+    status:
+      - '[ -z "$(which yum)" ]'
 
   tslib:
     vars:
@@ -301,3 +382,16 @@ tasks:
         fi
     status:
       - '[ ! -f tsconfig.json ]'
+
+  ventoy:
+    cmds:
+      - task: :install:ventoy:install
+      - task: ventoy:init
+    preconditions:
+      - sh: test -d /run/media/user/Ventoy
+        msg: The `/run/media/user/Ventoy` mounted USB directory must be available!
+
+  ventoy:init:
+    deps:
+      - :install:ventoy:clone
+      - :install:ventoy:download

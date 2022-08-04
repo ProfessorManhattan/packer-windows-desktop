@@ -2,6 +2,15 @@
 version: '3'
 
 tasks:
+  add-trailing-comma:
+    tags:
+      - update
+    run: once
+    cmds:
+      - task: install:pipx
+        vars:
+          PACKAGE: add-trailing-comma
+
   ansible:
     tags:
       - update
@@ -32,8 +41,6 @@ tasks:
       - task: ansible
 
   black:
-    tags:
-      - update
     run: once
     cmds:
       - task: install:pipx
@@ -47,6 +54,31 @@ tasks:
         vars:
           PACKAGE: blocklint
 
+  bundle:
+    deps:
+      - add-trailing-comma
+      - ansible
+      - ansible-lint
+      - ansibler
+      - blocklint
+      - flake8
+      - isort
+      - latestos
+      - mod-ansible-autodoc
+      - molecule
+      - mypy
+      - poet
+      - pre-commit-hooks
+      - proselint
+      - pyformat
+      - pyinstaller
+      - pyinstrument
+      - pysnooper
+      - pytest
+      - pytest-cov
+      - toml-sort
+      - yamllint
+
   flake8:
     run: once
     cmds:
@@ -54,9 +86,19 @@ tasks:
         vars:
           PACKAGE: flake8
 
+  getmac:
+    run: once
+    cmds:
+      - task: install:pipx
+        vars:
+          PACKAGE: getmac
+
   install:pipx:
     vars:
       BIN: '{{if .BIN_NAME}}{{.BIN_NAME}}{{else}}{{.PACKAGE}}{{end}}'
+    env:
+      PATH:
+        sh: echo "$PATH:$HOME/.local/bin"
     run: when_changed
     log:
       error: Failed to install `{{.PACKAGE}}` with pipx
@@ -66,9 +108,25 @@ tasks:
       - task: :install:software:pipx
       - |
         if [ -n "$CI" ]; then echo "*************** pipx --> {{.PACKAGE}}"; fi
-      - pipx install {{.PACKAGE}} --include-deps
+      - pipx install {{.PACKAGE}} --include-deps --force
     status:
       - type {{.BIN}} > /dev/null
+
+  isort:
+    tags:
+      - update
+    run: once
+    cmds:
+      - task: install:pipx
+        vars:
+          PACKAGE: isort
+
+  latestos:
+    run: once
+    cmds:
+      - task: install:pipx
+        vars:
+          PACKAGE: latestos
 
   mod-ansible-autodoc:
     run: once
@@ -86,6 +144,23 @@ tasks:
         vars:
           PACKAGE: molecule
 
+  mypy:
+    run: once
+    cmds:
+      - task: install:pipx
+        vars:
+          PACKAGE: mypy
+
+  poet:
+    tags:
+      - update
+    run: once
+    cmds:
+      - task: install:pipx
+        vars:
+          BIN_NAME: poet
+          PACKAGE: homebrew-pypi-poet
+
   pre-commit-hooks:
     run: once
     cmds:
@@ -102,6 +177,36 @@ tasks:
       - task: install:pipx
         vars:
           PACKAGE: proselint
+
+  pyformat:
+    tags:
+      - update
+    run: once
+    cmds:
+      - task: install:pipx
+        vars:
+          PACKAGE: pyformat
+
+  pyinstaller:
+    run: once
+    cmds:
+      - task: install:pipx
+        vars:
+          PACKAGE: pyinstaller
+
+  pyinstrument:
+    run: once
+    cmds:
+      - task: install:pipx
+        vars:
+          PACKAGE: pyinstrument
+
+  pysnooper:
+    run: once
+    cmds:
+      - task: install:pipx
+        vars:
+          PACKAGE: pysnooper
 
   pytest:
     run: once
