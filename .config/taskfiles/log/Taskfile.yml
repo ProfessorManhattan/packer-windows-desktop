@@ -27,6 +27,15 @@ tasks:
 
                 Paragraph `code` [Link to cool website](https://megabyte.space).
       ```
+
+      If passing in inlined markdown via the MARKDOWN library, you should ensure
+      that the inlined string is properly escaped so there are no clashes with single
+      quotes (e.g. ''). You can escape your strings using Task's built-in templating
+      engine by using the following syntax:
+
+      ```
+      {{'{{'}} replace "'" "\'" .MY_VARIABLE {{'}}'}}
+      ```
     cmds:
       - |
         TMP="$(mktemp)"
@@ -34,7 +43,7 @@ tasks:
         if [ -f '{{.MARKDOWN}}' ]; then
           cp '{{.MARKDOWN}}' "$TMP"
         else
-          tee "$TMP" < '{{replace "'" "\'" .MARKDOWN}}'
+          tee "$TMP" < '{{.MARKDOWN}}'
         fi
         .config/log md "$TMP"
         {{else}}
