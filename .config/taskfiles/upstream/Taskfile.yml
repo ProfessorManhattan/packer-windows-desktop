@@ -198,8 +198,11 @@ tasks:
           rm "$FILE"
         }
         while read FILE; do
-          cp "$FILE" "${FILE//.hbs}"
-        done < <(find . -type f -not \( {{.ADDITIONAL_IGNORE_FOLDERS}} {{.IGNORE_FOLDERS}} \) -prune -name '*.liquid.hbs')
+          MISC_TMP="$(mktemp)"
+          cp "$FILE" "$MISC_TMP"
+          handlebars "$FILE"
+          mv "$MISC_TMP" "$FILE"
+        done < <(find . -type f -not \( {{.ADDITIONAL_IGNORE_FOLDERS}} {{.IGNORE_FOLDERS}} \) -prune -name '*.liquid')
         while read CONFIG_FILE; do
           handlebars "$CONFIG_FILE"
         done < <(find .config -type f -name '*.liquid')
