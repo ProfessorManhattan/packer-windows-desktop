@@ -1981,7 +1981,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001382
-      electron-to-chromium: 1.4.229
+      electron-to-chromium: 1.4.230
       node-releases: 2.0.6
       update-browserslist-db: 1.0.5_browserslist@4.21.3
     dev: true
@@ -2915,8 +2915,8 @@ packages:
       sigmund: 1.0.1
     dev: true
 
-  /electron-to-chromium/1.4.229:
-    resolution: {integrity: sha512-kdye32s/padLGpiLzhrMraBBs/M5hDspB8PCdCP6L11AJ6dw3Gg3xdvT4b4pqWaW5tc5oAwCfKCS+PAsZM3ipw==}
+  /electron-to-chromium/1.4.230:
+    resolution: {integrity: sha512-3pwjAK0qHSDN9+YAF4fJknsSruP7mpjdWzUSruIJD/JCH77pEh0SorEyb3xVaKkfwk2tzjOt2D8scJ0KAdfXLA==}
     dev: true
 
   /elegant-spinner/1.0.1:
@@ -7257,7 +7257,7 @@ packages:
       prettier-plugin-java: 1.6.2
       prettier-plugin-jsdoc: 0.3.38_prettier@2.7.1
       prettier-plugin-organize-imports: 2.3.4_prettier@2.7.1+typescript@4.7.4
-      prettier-plugin-package-perfection: 1.0.9
+      prettier-plugin-package-perfection: 1.1.0
       prettier-plugin-properties: 0.1.0_prettier@2.7.1
       prettier-plugin-sh: 0.7.1_prettier@2.7.1
       prettier-plugin-solidity: 1.0.0-beta.24_prettier@2.7.1
@@ -7348,8 +7348,8 @@ packages:
       typescript: 4.7.4
     dev: true
 
-  /prettier-plugin-package-perfection/1.0.9:
-    resolution: {integrity: sha512-9lcAKtNJ6nVEhTe1PQ+76ntBdwAe1FPWUg/7IAN0TA1dcxlYxhNzxMsieqSOyP1OBf+UrF4WIuNhFVOJ1H0aVA==}
+  /prettier-plugin-package-perfection/1.1.0:
+    resolution: {integrity: sha512-RCNtWI8tlC4h/SmwqebdCR7ctrFzZVp13IM+SXdzFQ7lxa/QZza52Ioz+kvpKfjFD2Dvf/U5nVF8Ne1OkoePUQ==}
     engines: {node: '>=14.18.0'}
     peerDependencies:
       eslint: '*'
