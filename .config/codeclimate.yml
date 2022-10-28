@@ -8,6 +8,8 @@ plugins:
     enabled: true
   jscpd:
     enabled: true
+    exclude_patterns:
+      - common/.config/taskfiles/
   proselint:
     enabled: true
   shellcheck:
@@ -44,6 +46,7 @@ exclude_patterns:
   - deprecated/
   - dist/
   - features/
+  - gl-code-quality-report.json
   - pnpm-lock.yaml
   - roles/
   - script/
