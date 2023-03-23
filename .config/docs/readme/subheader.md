@@ -24,22 +24,22 @@
     <img alt="Version: {{ pkg.version }}" src="https://img.shields.io/badge/version-{{ pkg.version }}-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCNdjIACY//+BEp9hhM3hAzYQwoBIAqEDYQrCZLwAAGlFKxU1nF9cAAAAAElFTkSuQmCC&cacheSeconds=2592000&style={{ alt_badge_style }}" />
   </a>
   <a title="Pipeline status" href="{{ repository.gitlab }}{{ repository.location.commits.gitlab }}" target="_blank">
-    <img alt="Pipeline status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=master&label=build&logo=gitlab&style={{ alt_badge_style }}">
+    <img alt="Pipeline status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=master&label=build&logo=gitlab&style={{ alt_badge_style }}" />
   </a>
   <a title="Hyper-V build status" href="{{ repository.gitlab }}{{ repository.location.commits.gitlab }}" target="_blank">
-    <img alt="Hyper-V build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=hyperv&label=build&logo=hyper&style={{ alt_badge_style }}">
+    <img alt="Hyper-V build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=hyperv&label=build&logo=hyper&style={{ alt_badge_style }}" />
   </a>
   <a title="KVM/QEMU build status" href="{{ repository.gitlab }}{{ repository.location.commits.gitlab }}" target="_blank">
-    <img alt="KVM/QEMU build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=qemu&label=build&logo=qemu&style={{ alt_badge_style }}">
+    <img alt="KVM/QEMU build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=qemu&label=build&logo=qemu&style={{ alt_badge_style }}" />
   </a>
   <a title="Parallels build status" href="{{ repository.gitlab }}{{ repository.location.commits.gitlab }}" target="_blank">
-    <img alt="Parallels build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=parallels&label=build&logo=macos&style={{ alt_badge_style }}">
+    <img alt="Parallels build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=parallels&label=build&logo=macos&style={{ alt_badge_style }}" />
   </a>
   <a title="VirtualBox build status" href="{{ repository.gitlab }}{{ repository.location.commits.gitlab }}" target="_blank">
-    <img alt="VirtualBox build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=virtualbox&label=build&logo=virtualbox&style={{ alt_badge_style }}">
+    <img alt="VirtualBox build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=virtualbox&label=build&logo=virtualbox&style={{ alt_badge_style }}" />
   </a>
   <a title="VMWare build status" href="{{ repository.gitlab }}{{ repository.location.commits.gitlab }}" target="_blank">
-    <img alt="VMWare build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=vmware&label=build&logo=vmware&style={{ alt_badge_style }}">
+    <img alt="VMWare build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/{{ slug }}?branch=vmware&label=build&logo=vmware&style={{ alt_badge_style }}" />
   </a>
   <a title="Documentation" href="{{ link.docs }}/{{ group }}" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg?logo=readthedocs&style={{ alt_badge_style }}" />

@@ -36,22 +36,22 @@
     <img alt="Version: 1.0.0" src="https://img.shields.io/badge/version-1.0.0-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCNdjIACY//+BEp9hhM3hAzYQwoBIAqEDYQrCZLwAAGlFKxU1nF9cAAAAAElFTkSuQmCC&cacheSeconds=2592000&style=flat-square" />
   </a>
   <a title="Pipeline status" href="https://gitlab.com/megabyte-labs/packer/windows-desktop/-/commits/master" target="_blank">
-    <img alt="Pipeline status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=master&label=build&logo=gitlab&style=flat-square">
+    <img alt="Pipeline status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=master&label=build&logo=gitlab&style=flat-square" />
   </a>
   <a title="Hyper-V build status" href="https://gitlab.com/megabyte-labs/packer/windows-desktop/-/commits/master" target="_blank">
-    <img alt="Hyper-V build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=hyperv&label=build&logo=hyper&style=flat-square">
+    <img alt="Hyper-V build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=hyperv&label=build&logo=hyper&style=flat-square" />
   </a>
   <a title="KVM/QEMU build status" href="https://gitlab.com/megabyte-labs/packer/windows-desktop/-/commits/master" target="_blank">
-    <img alt="KVM/QEMU build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=qemu&label=build&logo=qemu&style=flat-square">
+    <img alt="KVM/QEMU build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=qemu&label=build&logo=qemu&style=flat-square" />
   </a>
   <a title="Parallels build status" href="https://gitlab.com/megabyte-labs/packer/windows-desktop/-/commits/master" target="_blank">
-    <img alt="Parallels build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=parallels&label=build&logo=macos&style=flat-square">
+    <img alt="Parallels build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=parallels&label=build&logo=macos&style=flat-square" />
   </a>
   <a title="VirtualBox build status" href="https://gitlab.com/megabyte-labs/packer/windows-desktop/-/commits/master" target="_blank">
-    <img alt="VirtualBox build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=virtualbox&label=build&logo=virtualbox&style=flat-square">
+    <img alt="VirtualBox build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=virtualbox&label=build&logo=virtualbox&style=flat-square" />
   </a>
   <a title="VMWare build status" href="https://gitlab.com/megabyte-labs/packer/windows-desktop/-/commits/master" target="_blank">
-    <img alt="VMWare build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=vmware&label=build&logo=vmware&style=flat-square">
+    <img alt="VMWare build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/windows-desktop?branch=vmware&label=build&logo=vmware&style=flat-square" />
   </a>
   <a title="Documentation" href="https://megabyte.space/docs/packer" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg?logo=readthedocs&style=flat-square" />
